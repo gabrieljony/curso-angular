@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './template/header/header.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import { DataFormComponent } from './data-form/data-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    TemplateFormComponent
+    TemplateFormComponent,
+    DataFormComponent
   ],
   imports: [
     BrowserModule,
