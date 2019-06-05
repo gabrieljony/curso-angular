@@ -35,7 +35,7 @@
       <div class="col-md-3">
         <label for="cep" [class.control-label]="!cep.valid && cep.touched">CEP</label>
         <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" ngModel [(ngModel)]="usuario.cep"
-          required cep #cep="ngModel" [ngClass]="aplicaCssErro(cep)" />
+          required cep #cep="ngModel" [ngClass]="aplicaCssErro(cep)" (blur)="consultaCEP($event.target.value)"/>
         <div *ngIf="!cep.valid && cep.touched" class="invalid-feedback">
           CEP é obrigatório.
         </div>
