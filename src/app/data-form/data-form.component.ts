@@ -48,11 +48,9 @@ export class DataFormComponent implements OnInit {
       numero:[null, Validators.required],
       complemento:[null],
       rua:[null, Validators.required],
-      localizacao: this.formBuilder.group({
-        bairro:[null, Validators.required],
-        cidade:[null, Validators.required],
-        estado:[null, Validators.required]
-      })
+      bairro:[null, Validators.required],
+      cidade:[null, Validators.required],
+      estado:[null, Validators.required]
     })
   });
 
@@ -63,13 +61,36 @@ export class DataFormComponent implements OnInit {
     console.log(this.formulario);
     console.log(this.formulario.value);
 
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-    .subscribe(dados => {
-      console.log(dados);
-      console.log(this.formulario.value);
-    },
-    (error: any) => alert('erro'));
+    if (this.formulario.valid) {
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      .subscribe(dados => {
+        console.log(dados);
+        console.log(this.formulario.value);
+      },
+      (error: any) => alert('erro'));
+      //reseta o form
+      // this.formulario.reset();
+      // ou
+      //this.limpar();
 
+    } else {
+      console.log('formulário invalido');
+      this.verificaValidacoesForm(this.formulario);
+    }
+  }
+
+  verificaValidacoesForm(formGroup: FormGroup) {
+
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo);
+      const controle = formGroup.get(campo);
+      console.log(controle);
+      controle.markAsDirty();
+      //Validação do nivel endereco
+      if (controle instanceof FormGroup){
+        this.verificaValidacoesForm(controle);
+      }
+    })
 
   }
 
@@ -82,7 +103,7 @@ export class DataFormComponent implements OnInit {
 
   //Validação
   verificaValidTouched(campo: string) {
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+    return !this.formulario.get(campo).valid && (this.formulario.get(campo).touched || this.formulario.get(campo).dirty);
   }
 
   verificaValidEmailInvalido() {
@@ -115,18 +136,6 @@ export class DataFormComponent implements OnInit {
 
   }
 
-  resetaDadosForm(){
-    this.formulario.patchValue({
-      endereco: {
-        rua: null,
-        complemento: null,
-        bairro: null,
-        cidade: null,
-        estado: null,
-      }
-    });
-  }
-
   populaDadosForm(dados){
 
     this.formulario.patchValue({
@@ -139,6 +148,19 @@ export class DataFormComponent implements OnInit {
       }
     });
   }
+
+  resetaDadosForm(){
+    this.formulario.patchValue({
+      endereco: {
+        rua: null,
+        complemento: null,
+        bairro: null,
+        cidade: null,
+        estado: null,
+      }
+    });
+  }
+
 
 
 }

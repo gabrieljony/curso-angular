@@ -76,26 +76,26 @@
         </div>
       </div>
     </div>
-    <div formGroupName="localizacao">
+    <div>
       <div class="form-row">
         <div class="col-md-5">
-          <label for="bairro"[ngClass]="aplicaCssErroLabel('endereco.localizacao.bairro')">bairro</label>
-          <input type="text" class="form-control" id="bairro" placeholder="bairro" formControlName="bairro" [ngClass]="aplicaCssErro('endereco.localizacao.bairro')"/>
-          <div *ngIf="verificaValidTouched('endereco.localizacao.bairro')" class="invalid-feedback">
+          <label for="bairro"[ngClass]="aplicaCssErroLabel('endereco.bairro')">bairro</label>
+          <input type="text" class="form-control" id="bairro" placeholder="bairro" formControlName="bairro" [ngClass]="aplicaCssErro('endereco.bairro')"/>
+          <div *ngIf="verificaValidTouched('endereco.bairro')" class="invalid-feedback">
             bairro é obrigatório.
           </div>
         </div>
         <div class="col-md-4">
-          <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.localizacao.cidade')">cidade</label>
-          <input type="text" class="form-control" id="cidade" placeholder="cidade" formControlName="cidade" [ngClass]="aplicaCssErro('endereco.localizacao.cidade')"/>
-          <div *ngIf="verificaValidTouched('endereco.localizacao.cidade')" class="invalid-feedback">
+          <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.cidade')">cidade</label>
+          <input type="text" class="form-control" id="cidade" placeholder="cidade" formControlName="cidade" [ngClass]="aplicaCssErro('endereco.cidade')"/>
+          <div *ngIf="verificaValidTouched('endereco.cidade')" class="invalid-feedback">
             cidade é obrigatório.
           </div>
         </div>
         <div class="col-md-3">
-          <label for="estado" [ngClass]="aplicaCssErroLabel('endereco.localizacao.estado')">estado</label>
-          <input type="text" class="form-control" id="estado" placeholder="estado" formControlName="estado" [ngClass]="aplicaCssErro('endereco.localizacao.estado')"/>
-          <div *ngIf="verificaValidTouched('endereco.localizacao.estado')" class="invalid-feedback">
+          <label for="estado" [ngClass]="aplicaCssErroLabel('endereco.estado')">estado</label>
+          <input type="text" class="form-control" id="estado" placeholder="estado" formControlName="estado" [ngClass]="aplicaCssErro('endereco.estado')"/>
+          <div *ngIf="verificaValidTouched('endereco.estado')" class="invalid-feedback">
             estado é obrigatório.
           </div>
         </div>
