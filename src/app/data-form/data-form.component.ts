@@ -25,7 +25,14 @@ export class DataFormComponent implements OnInit {
   //Instanciar uma classe usando o FormBuilder e a classe recebe um objeto como parâmetro
   this.formulario = this.formBuilder.group({
     nome:[null, Validators.required],
-    email:[null, [Validators.required, Validators.email]]
+    email:[null, [Validators.required, Validators.email]],
+    cep:[null, Validators.required],
+    numero:[null, Validators.required],
+    complemento:[null],
+    rua:[null, Validators.required],
+    bairro:[null, Validators.required],
+    cidade:[null, Validators.required],
+    estado:[null, Validators.required]
   });
 
 

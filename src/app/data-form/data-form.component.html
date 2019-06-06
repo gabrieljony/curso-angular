@@ -44,6 +44,66 @@
     </div>
   </div>
 
+  <!-- ENDEREÇO -->
+  <div >
+    <div class="form-row">
+      <div class="col-md-3">
+        <label for="cep" [ngClass]="aplicaCssErroLabel('cep')">CEP</label>
+        <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep"/>
+        <div *ngIf="verificaValidTouched('cep')" class="invalid-feedback">
+          CEP é obrigatório.
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label for="numero" [ngClass]="aplicaCssErroLabel('numero')">Número</label>
+        <input type="text" class="form-control" id="numero" placeholder="Número" formControlName="numero"/>
+        <div *ngIf="verificaValidTouched('numero')" class="invalid-feedback">
+          Número é obrigatório.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="complemento">Complemento</label>
+        <input type="text" class="form-control" id="complemento" placeholder="Complemento" formControlName="complemento" readonly/>
+      </div>
+
+    </div>
+    <div class="form-row">
+      <div class="col-md-12">
+        <label for="rua" [ngClass]="aplicaCssErroLabel('rua')">rua</label>
+        <input type="text" class="form-control" id="rua" placeholder="rua" formControlName="rua"/>
+        <div *ngIf="verificaValidTouched('rua')" class="invalid-feedback">
+          rua é obrigatório.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="form-row">
+        <div class="col-md-5">
+          <label for="bairro"[ngClass]="aplicaCssErroLabel('bairro')">bairro</label>
+          <input type="text" class="form-control" id="bairro" placeholder="bairro" formControlName="bairro"/>
+          <div *ngIf="verificaValidTouched('bairro')" class="invalid-feedback">
+            bairro é obrigatório.
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="cidade" [ngClass]="aplicaCssErroLabel('cidade')">cidade</label>
+          <input type="text" class="form-control" id="cidade" placeholder="cidade" formControlName="cidade"/>
+          <div *ngIf="verificaValidTouched('cidade')" class="invalid-feedback">
+            cidade é obrigatório.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="estado" [ngClass]="aplicaCssErroLabel('estado')">estado</label>
+          <input type="text" class="form-control" id="estado" placeholder="estado" formControlName="estado"/>
+          <div *ngIf="verificaValidTouched('estado')" class="invalid-feedback">
+            estado é obrigatório.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIM DO ENDEREÇO -->
+
   <button type="submit" class="btn btn-primary">Enviar</button>
   <button class="btn" (click)="limpar()">Limpar</button>
 
