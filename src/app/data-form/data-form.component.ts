@@ -53,7 +53,7 @@ export class DataFormComponent implements OnInit {
 
 
   //Validação
-  verificaValidTouched(campo) {
+  verificaValidTouched(campo: string) {
     return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
   }
 
@@ -64,13 +64,13 @@ export class DataFormComponent implements OnInit {
     }
   }
 
-  aplicaCssErro(campo) {
+  aplicaCssErro(campo: string) {
     return {
       'is-invalid': this.verificaValidTouched(campo),
     }
   }
 
-  aplicaCssErroLabel(campo) {
+  aplicaCssErroLabel(campo: string) {
     return {
       'control-label': this.verificaValidTouched(campo),
     }
