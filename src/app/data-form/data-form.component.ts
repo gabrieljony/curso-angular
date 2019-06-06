@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ConsultarCepService } from '../shared/services/consultar-cep.service';
 
 @Component({
   selector: 'app-data-form',
@@ -13,7 +14,8 @@ export class DataFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private cepService: ConsultarCepService) { }
 
   //No momento da inicialização do component chama o ngOnInit
   ngOnInit() {
@@ -101,5 +103,42 @@ export class DataFormComponent implements OnInit {
       'control-label': this.verificaValidTouched(campo),
     }
   }
+
+  consultaCEP() {
+
+    const cep = this.formulario.get('endereco.cep').value;
+
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCEP(cep)
+      .subscribe(dados => this.populaDadosForm(dados));
+    }
+
+  }
+
+  resetaDadosForm(){
+    this.formulario.patchValue({
+      endereco: {
+        rua: null,
+        complemento: null,
+        bairro: null,
+        cidade: null,
+        estado: null,
+      }
+    });
+  }
+
+  populaDadosForm(dados){
+
+    this.formulario.patchValue({
+      endereco: {
+        rua: dados.logradouro,
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf,
+      }
+    });
+  }
+
 
 }

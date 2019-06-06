@@ -49,7 +49,7 @@
     <div class="form-row">
       <div class="col-md-3">
         <label for="cep" [ngClass]="aplicaCssErroLabel('endereco.cep')">CEP</label>
-        <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep" [ngClass]="aplicaCssErro('endereco.cep')"/>
+        <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep" [ngClass]="aplicaCssErro('endereco.cep')" (blur)="consultaCEP()"/>
         <div *ngIf="verificaValidTouched('endereco.cep')" class="invalid-feedback">
           CEP é obrigatório.
         </div>
