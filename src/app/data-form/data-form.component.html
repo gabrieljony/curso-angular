@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="aplicaCssErro('nome')"/>      
       <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
-        Nome é obrigatótio.
+        Nome é obrigatório.
       </div>
     </div>
 
@@ -21,7 +21,10 @@
     <div class="col-md-12">
       <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email" [ngClass]="aplicaCssErro('email')"/>
       <div *ngIf="verificaValidTouched('email')" class="invalid-feedback">
-        E-mail é obrigatótio.
+        E-mail é obrigatório.
+      </div>
+      <div *ngIf="verificaValidEmailInvalido('email')" class="invalid-feedback">
+        E-mail inválido.
       </div>
       <!-- 2 form de fazer a validação -->
       <!-- <app-campo-control-error
