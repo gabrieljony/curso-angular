@@ -17,22 +17,41 @@ export class DataFormComponent implements OnInit {
 
   //No momento da inicialização do component chama o ngOnInit
   ngOnInit() {
+
+  // FormGroup
   //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
+
   // this.formulario = new FormGroup({
   //   nome: new FormControl(null),
-  //   email: new FormControl(null)
+  //   email: new FormControl(null),
+  //   endereco: new FormGroup({
+  //     cep: new FormControl(null),
+  //     numero: new FormControl(null),
+  //     complemento: new FormControl(null),
+  //     rua: new FormControl(null),
+  //     bairro: new FormControl(null),
+  //     cidade: new FormControl(null),
+  //     estado: new FormControl(null)
+  //   })
   // });
+
+  // FormBuilder
   //Instanciar uma classe usando o FormBuilder e a classe recebe um objeto como parâmetro
+
   this.formulario = this.formBuilder.group({
     nome:[null, Validators.required],
     email:[null, [Validators.required, Validators.email]],
-    cep:[null, Validators.required],
-    numero:[null, Validators.required],
-    complemento:[null],
-    rua:[null, Validators.required],
-    bairro:[null, Validators.required],
-    cidade:[null, Validators.required],
-    estado:[null, Validators.required]
+    endereco: this.formBuilder.group({
+      cep:[null, Validators.required],
+      numero:[null, Validators.required],
+      complemento:[null],
+      rua:[null, Validators.required],
+      localizacao: this.formBuilder.group({
+        bairro:[null, Validators.required],
+        cidade:[null, Validators.required],
+        estado:[null, Validators.required]
+      })
+    })
   });
 
 
