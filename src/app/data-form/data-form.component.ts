@@ -51,4 +51,22 @@ export class DataFormComponent implements OnInit {
     console.log(this.formulario.value);
   }
 
+
+  //Validação
+  verificaValidTouched(campo) {
+    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched;
+  }
+
+  aplicaCssErro(campo) {
+    return {
+      'is-invalid': this.verificaValidTouched(campo),
+    }
+  }
+
+  aplicaCssErroLabel(campo) {
+    return {
+      'control-label': this.verificaValidTouched(campo),
+    }
+  }
+
 }

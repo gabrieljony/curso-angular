@@ -2,21 +2,42 @@
   <div class="form-row">
 
     <div class="col-md-12">
-      <label for="nome">Nome</label>
+      <label for="nome" [ngClass]="aplicaCssErroLabel('nome')">Nome</label>
     </div>
 
     <div class="col-md-12">
-      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome"/>      
+      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="aplicaCssErro('nome')"/>      
+      <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
+        Nome é obrigatótio.
+      </div>
     </div>
 
   </div>
 
   <div class="form-row">
     <div class="col-md-12">
-      <label for="email" >E-mail</label>
+      <label for="email" [ngClass]="aplicaCssErroLabel('email')">E-mail</label>
     </div>
     <div class="col-md-12">
-      <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email"/>
+      <input type="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email" [ngClass]="aplicaCssErro('email')"/>
+      <div *ngIf="verificaValidTouched('email')" class="invalid-feedback">
+        E-mail é obrigatótio.
+      </div>
+      <!-- 2 form de fazer a validação -->
+      <!-- <app-campo-control-error
+      [mostrarErro]="!formulario.get('email').valid && formulario.get('email').touched"
+      msgErro="E-mail é obrigatório."
+      ></app-campo-control-error> -->
+      <!-- 3 forma de fazer a validação -->
+      <!-- <app-campo-control-error
+      [mostrarErro]="!formulario.controls['email'].valid && formulario.controls['email'].touched"
+      msgErro="E-mail é obrigatório."
+      ></app-campo-control-error> -->
+      <!-- 4 forma de fazer a validação -->
+      <!-- <app-campo-control-error
+      [mostrarErro]="verificaValidTouched('email')"
+      msgErro="E-mail é obrigatório."
+      ></app-campo-control-error> -->
     </div>
   </div>
 
