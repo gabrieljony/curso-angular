@@ -1,7 +1,9 @@
+import { DropdownService } from './../shared/services/dropdown.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ConsultarCepService } from '../shared/services/consultar-cep.service';
+import { EstadoBr } from '../shared/models/estadobr.model';
 
 @Component({
   selector: 'app-data-form',
@@ -11,21 +13,30 @@ import { ConsultarCepService } from '../shared/services/consultar-cep.service';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
+  estados: EstadoBr[];
+
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private cepService: ConsultarCepService) { }
+    private cepService: ConsultarCepService,
+    private dropdownService: DropdownService) { }
 
   //No momento da inicialização do component chama o ngOnInit
   ngOnInit() {
+
+    this.dropdownService.getEstadoBr()
+      .subscribe(dados => {
+        this.estados = dados;
+        console.log(this.estados);
+      });
 
   // FormGroup
   //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
 
   this.formulario = new FormGroup({
     nome: new FormControl(null, Validators.required),
-    email: new FormControl(null,[ Validators.required, Validators.email]),
+    email: new FormControl(null,[Validators.required, Validators.email]),
     endereco: new FormGroup({
       cep: new FormControl(null, Validators.required),
       numero: new FormControl(null, Validators.required),
@@ -131,22 +142,29 @@ export class DataFormComponent implements OnInit {
 
     if (cep != null && cep !== '') {
       this.cepService.consultaCEP(cep)
-      .subscribe(dados => this.populaDadosForm(dados));
+      .subscribe(dados => {
+        this.populaDadosForm(dados);
+        console.log(dados);
+      });
     }
 
   }
 
   populaDadosForm(dados){
 
-    this.formulario.patchValue({
-      endereco: {
-        rua: dados.logradouro,
-        complemento: dados.complemento,
-        bairro: dados.bairro,
-        cidade: dados.localidade,
-        estado: dados.uf,
-      }
-    });
+    if (dados.resultado === '1') {
+      this.formulario.patchValue({
+        endereco: {
+          rua: dados.tipo_logradouro + ' ' + dados.logradouro,
+          complemento: dados.complemento,
+          bairro: dados.bairro,
+          cidade: dados.cidade,
+          estado: dados.uf,
+        }
+      });
+    } else {
+      alert('error');
+    }
   }
 
   resetaDadosForm(){
