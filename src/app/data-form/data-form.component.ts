@@ -56,7 +56,9 @@ export class DataFormComponent implements OnInit {
     }),
     cargo: new FormControl(null),
     tecnologia: new FormControl(null),
-    newsletter: new FormControl(null)
+    newsletter: new FormControl(null),
+    termos: new FormControl(null, Validators.pattern('true'))
+
   });
 
   // FormBuilder

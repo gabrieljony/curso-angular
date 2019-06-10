@@ -139,6 +139,19 @@
     </div>
   </div>
 
+  <div class="form-row">
+    <div class="col-md-3" [ngClass]="aplicaCssErroLabel('termos')">
+      <div class="checkbox">
+        <label class="checkbox-inline">
+          <input type="checkbox" formControlName="termos"/> aceito os Termos
+        </label>
+        <div *ngIf="verificaValidTouched('termos')" class="invalid-feedback">
+          Por favor aceite os termos.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <button type="submit" class="btn btn-primary">Enviar</button>
   <button class="btn" (click)="limpar()">Limpar</button>
   <button class="btn" (click)="setarCargo()">Cargo</button>
