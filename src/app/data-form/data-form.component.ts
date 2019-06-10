@@ -19,6 +19,7 @@ export class DataFormComponent implements OnInit {
   cepInvalido: boolean = false;
 
   cargos: any[];
+  tecnologias: any[];
 
 
   constructor(
@@ -32,6 +33,7 @@ export class DataFormComponent implements OnInit {
 
   this.estados = this.dropdownService.getEstadoBr();
   this.cargos = this.dropdownService.getCargos();
+  this.tecnologias = this.dropdownService.getTecnologias();
 
   // this.dropdownEstados();
 
@@ -51,6 +53,7 @@ export class DataFormComponent implements OnInit {
       estado: new FormControl(null, Validators.required)
     }),
     cargo: new FormControl(null),
+    tecnologia: new FormControl(null)
   });
 
   // FormBuilder
@@ -205,6 +208,10 @@ export class DataFormComponent implements OnInit {
 
   compararCargos (obj1, obj2) {
     return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 && obj2 ;
+  }
+
+  setarTecnologias() {
+    this.formulario.get('tecnologia').setValue(['java', 'javascript', 'php']);
   }
 
 
