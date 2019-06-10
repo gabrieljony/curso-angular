@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-md-12">
-      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="aplicaCssErro('nome')"/>      
+      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="aplicaCssErro('nome')"/>
       <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
         Nome é obrigatório.
       </div>
@@ -53,6 +53,9 @@
         <div *ngIf="verificaValidTouched('endereco.cep')" class="invalid-feedback">
           CEP é obrigatório.
         </div>
+        <div *ngIf="verificaValidCep('endereco.cep')" class="invalid-feedback">
+          CEP é inválido.
+        </div>
       </div>
       <div class="col-md-3">
         <label for="numero" [ngClass]="aplicaCssErroLabel('endereco.numero')">Número</label>
@@ -94,7 +97,9 @@
         </div>
         <div class="col-md-3">
           <label for="estado" [ngClass]="aplicaCssErroLabel('endereco.estado')">estado</label>
-          <input type="text" class="form-control" id="estado" placeholder="estado" formControlName="estado" [ngClass]="aplicaCssErro('endereco.estado')"/>
+          <select class="form-control" id="estado" formControlName="estado" [ngClass]="aplicaCssErro('endereco.estado')">
+            <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+          </select>
           <div *ngIf="verificaValidTouched('endereco.estado')" class="invalid-feedback">
             estado é obrigatório.
           </div>

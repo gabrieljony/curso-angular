@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { ConsultarCepService } from '../shared/services/consultar-cep.service';
 import { EstadoBr } from '../shared/models/estadobr.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -13,7 +14,9 @@ import { EstadoBr } from '../shared/models/estadobr.model';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
-  estados: EstadoBr[];
+  // estados: EstadoBr[];
+  estados: Observable<EstadoBr[]>;
+  cepInvalido: boolean = false;
 
 
   constructor(
@@ -25,11 +28,9 @@ export class DataFormComponent implements OnInit {
   //No momento da inicialização do component chama o ngOnInit
   ngOnInit() {
 
-    this.dropdownService.getEstadoBr()
-      .subscribe(dados => {
-        this.estados = dados;
-        console.log(this.estados);
-      });
+  this.estados = this.dropdownService.getEstadoBr();
+
+  // this.dropdownEstados();
 
   // FormGroup
   //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
@@ -124,6 +125,10 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  verificaValidCep() {
+    return this.cepInvalido = true;
+  }
+
   aplicaCssErro(campo: string) {
     return {
       'is-invalid': this.verificaValidTouched(campo),
@@ -144,7 +149,7 @@ export class DataFormComponent implements OnInit {
       this.cepService.consultaCEP(cep)
       .subscribe(dados => {
         this.populaDadosForm(dados);
-        console.log(dados);
+        // console.log(dados);
       });
     }
 
@@ -153,6 +158,7 @@ export class DataFormComponent implements OnInit {
   populaDadosForm(dados){
 
     if (dados.resultado === '1') {
+      this.cepInvalido = false;
       this.formulario.patchValue({
         endereco: {
           rua: dados.tipo_logradouro + ' ' + dados.logradouro,
@@ -163,7 +169,8 @@ export class DataFormComponent implements OnInit {
         }
       });
     } else {
-      alert('error');
+      this.resetaDadosForm();
+      this.verificaValidCep();
     }
   }
 
@@ -177,6 +184,14 @@ export class DataFormComponent implements OnInit {
         estado: null,
       }
     });
+  }
+
+  dropdownEstados() {
+    // this.dropdownService.getEstadoBr()
+    //   .subscribe(dados => {
+    //     this.estados = dados;
+    //     console.log(this.estados);
+    //   });
   }
 
 

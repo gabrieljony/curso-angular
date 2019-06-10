@@ -12,7 +12,7 @@ export class ConsultarCepService {
 
   consultaCEP(cep: string) {
 
-    console.log(cep);
+    //console.log(cep);
 
     // Nova variável "cep" somente com dígitos vai validar.
     cep = cep.replace(/\D/g, '');
@@ -28,7 +28,7 @@ export class ConsultarCepService {
         return this.http.get('http://cep.republicavirtual.com.br/web_cep.php?cep=' + cep + '&formato=json');
       }
     }
-
+    //retornar um obserble de vazio, caso o formulario tenha passado uma informação incorreta, retorna vazio
     return of({});
   }
 
