@@ -1,3 +1,4 @@
+import { FormValidations } from './../shared/form-validation';
 import { DropdownService } from './../shared/services/dropdown.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -45,6 +46,7 @@ export class DataFormComponent implements OnInit {
   this.formulario = new FormGroup({
     nome: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
+    confirmarEmail: new FormControl(null, [FormValidations.equalsTo('email')]),
     endereco: new FormGroup({
       cep: new FormControl(null, Validators.required),
       numero: new FormControl(null, Validators.required),
