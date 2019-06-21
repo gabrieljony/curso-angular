@@ -52,7 +52,7 @@ export class DataFormComponent implements OnInit {
     //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
 
     this.formulario = new FormGroup({
-      nome: new FormControl(null, Validators.required),
+      nome: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(15)]),
       email: new FormControl(null, [Validators.required, Validators.email], this.validarEmail.bind(this)),
       confirmarEmail: new FormControl(null, [FormValidations.equalsTo('email')]),
       endereco: new FormGroup({

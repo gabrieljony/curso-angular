@@ -7,9 +7,11 @@
 
     <div class="col-md-12">
       <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="aplicaCssErro('nome')"/>
-      <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
+
+      <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
+      <!-- <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
         Nome é obrigatório.
-      </div>
+      </div> -->
     </div>
 
   </div>

@@ -5,15 +5,18 @@ import { CommonModule } from '@angular/common';
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { CampoControlErrorComponent } from './campo-control-error/campo-control-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 @NgModule({
   declarations: [
     FormDebugComponent,
-    CampoControlErrorComponent
+    CampoControlErrorComponent,
+    ErrorMsgComponent
   ],
   exports:[
     FormDebugComponent,
-    CampoControlErrorComponent
+    CampoControlErrorComponent,
+    ErrorMsgComponent
   ],
   imports: [
     CommonModule,

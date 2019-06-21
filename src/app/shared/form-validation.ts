@@ -1,4 +1,4 @@
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class FormValidations {
 
@@ -49,6 +49,17 @@ export class FormValidations {
       return validacep.test(cep) ? null : { cepInvalido : true };
     }
     return null;
+  }
+
+  static getErrosMsg(fieldName: string, validatorName: string, validatorValue?: any) {
+    const config = {
+      'required': `${fieldName} é obrigatório.`,
+      'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
+      'maxlength': `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
+      'cepInvalido': 'CEP é inválido.',
+    };
+
+    return config[validatorName];
   }
 
 }
