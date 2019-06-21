@@ -26,6 +26,15 @@
       <div *ngIf="verificaValidEmailInvalido('email')" class="invalid-feedback">
         E-mail inválido.
       </div>
+      <div *ngIf="formulario.get('email').status === 'PENDING'" class="invalid-feedback">
+        Validando E-mail...
+      </div>
+      <div *ngIf="formulario.get('email').status === 'VALID'" class="invalid-feedback">
+        E-mail válido!
+      </div>
+      <div *ngIf="formulario.get('email').hasError('emailInvalido')" class="invalid-feedback">
+        E-mail já cadastrado.
+      </div>
       <!-- 2 form de fazer a validação -->
       <!-- <app-campo-control-error
       [mostrarErro]="!formulario.get('email').valid && formulario.get('email').touched"

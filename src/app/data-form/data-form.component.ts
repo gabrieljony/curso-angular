@@ -1,11 +1,16 @@
-import { FormValidations } from './../shared/form-validation';
-import { DropdownService } from './../shared/services/dropdown.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+
 import { ConsultarCepService } from '../shared/services/consultar-cep.service';
+import { VerificaEmailService } from './services/verifica-email.service';
+import { DropdownService } from './../shared/services/dropdown.service';
+
+import { FormValidations } from './../shared/form-validation';
 import { EstadoBr } from '../shared/models/estadobr.model';
+
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -28,38 +33,41 @@ export class DataFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private cepService: ConsultarCepService,
-    private dropdownService: DropdownService) { }
+    private dropdownService: DropdownService,
+    private verificaEmailService: VerificaEmailService) { }
 
   //No momento da inicialização do component chama o ngOnInit
   ngOnInit() {
 
-  this.estados = this.dropdownService.getEstadoBr();
-  this.cargos = this.dropdownService.getCargos();
-  this.tecnologias = this.dropdownService.getTecnologias();
-  this.newsletterOp = this.dropdownService.getNewsLetter();
+    // this.verificaEmailService.verificarEmail('email@email.com').subscribe();
 
-  // this.dropdownEstados();
+    this.estados = this.dropdownService.getEstadoBr();
+    this.cargos = this.dropdownService.getCargos();
+    this.tecnologias = this.dropdownService.getTecnologias();
+    this.newsletterOp = this.dropdownService.getNewsLetter();
 
-  // FormGroup
-  //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
+    // this.dropdownEstados();
 
-  this.formulario = new FormGroup({
-    nome: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    confirmarEmail: new FormControl(null, [FormValidations.equalsTo('email')]),
-    endereco: new FormGroup({
-      cep: new FormControl(null, [Validators.required, FormValidations.cepValidator]),
-      numero: new FormControl(null, Validators.required),
-      complemento: new FormControl(null),
-      rua: new FormControl(null, Validators.required),
-      bairro: new FormControl(null, Validators.required),
-      cidade: new FormControl(null, Validators.required),
-      estado: new FormControl(null, Validators.required)
-    }),
-    cargo: new FormControl(null),
-    tecnologia: new FormControl(null),
-    newsletter: new FormControl(null),
-    termos: new FormControl(null, Validators.pattern('true'))
+    // FormGroup
+    //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
+
+    this.formulario = new FormGroup({
+      nome: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email], this.validarEmail.bind(this)),
+      confirmarEmail: new FormControl(null, [FormValidations.equalsTo('email')]),
+      endereco: new FormGroup({
+        cep: new FormControl(null, [Validators.required, FormValidations.cepValidator]),
+        numero: new FormControl(null, Validators.required),
+        complemento: new FormControl(null),
+        rua: new FormControl(null, Validators.required),
+        bairro: new FormControl(null, Validators.required),
+        cidade: new FormControl(null, Validators.required),
+        estado: new FormControl(null, Validators.required)
+      }),
+      cargo: new FormControl(null),
+      tecnologia: new FormControl(null),
+      newsletter: new FormControl(null),
+      termos: new FormControl(null, Validators.pattern('true'))
 
   });
 
@@ -228,6 +236,11 @@ export class DataFormComponent implements OnInit {
 
   setarTecnologias() {
     this.formulario.get('tecnologia').setValue(['java', 'javascript', 'php']);
+  }
+
+  validarEmail(formControl: FormControl) {
+    return this.verificaEmailService.verificarEmail(formControl.value)
+      .pipe(map(emailExiste => emailExiste ? { emailInvalido : true } : null));
   }
 
 
