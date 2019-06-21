@@ -48,7 +48,7 @@ export class DataFormComponent implements OnInit {
     email: new FormControl(null, [Validators.required, Validators.email]),
     confirmarEmail: new FormControl(null, [FormValidations.equalsTo('email')]),
     endereco: new FormGroup({
-      cep: new FormControl(null, Validators.required),
+      cep: new FormControl(null, [Validators.required, FormValidations.cepValidator]),
       numero: new FormControl(null, Validators.required),
       complemento: new FormControl(null),
       rua: new FormControl(null, Validators.required),
@@ -129,7 +129,16 @@ export class DataFormComponent implements OnInit {
 
   //Validação
   verificaValidTouched(campo: string) {
-    return !this.formulario.get(campo).valid && (this.formulario.get(campo).touched || this.formulario.get(campo).dirty);
+    return !this.formulario.get(campo).valid &&
+    (this.formulario.get(campo).touched || this.formulario.get(campo).dirty);
+  }
+
+  //Validação Required
+  verificaValidRequired(campo: string) {
+    return (
+      this.formulario.get(campo).hasError('required') &&
+      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+    );
   }
 
   verificaValidEmailInvalido() {

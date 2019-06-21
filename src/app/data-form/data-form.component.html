@@ -61,11 +61,14 @@
       <div class="col-md-3">
         <label for="cep" [ngClass]="aplicaCssErroLabel('endereco.cep')">CEP</label>
         <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep" [ngClass]="aplicaCssErro('endereco.cep')" (blur)="consultaCEP()"/>
-        <div *ngIf="verificaValidTouched('endereco.cep')" class="invalid-feedback">
+        <div *ngIf="verificaValidRequired('endereco.cep')" class="invalid-feedback">
           CEP é obrigatório.
         </div>
-        <div *ngIf="verificaValidCep('endereco.cep')" class="invalid-feedback">
+        <!-- <div *ngIf="verificaValidCep('endereco.cep')" class="invalid-feedback">
           CEP é inválido.
+        </div> -->
+        <div *ngIf="formulario.get('endereco.cep').hasError('cepInvalido')" class="invalid-feedback">
+          Este CEP está inválido.
         </div>
       </div>
       <div class="col-md-3">
