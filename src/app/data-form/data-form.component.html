@@ -1,20 +1,13 @@
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-  <div class="form-row">
 
-    <div class="col-md-12">
-      <label for="nome" [ngClass]="aplicaCssErroLabel('nome')">Nome</label>
-    </div>
-
-    <div class="col-md-12">
-      <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="aplicaCssErro('nome')"/>
-
-      <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
-      <!-- <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
-        Nome é obrigatório.
-      </div> -->
-    </div>
-
-  </div>
+  <app-input-field
+    class="col-md-12"
+    formControlName="nome"
+    [classeCssErroLabel]="aplicaCssErroLabel('nome')"
+    id="nome"
+    labelName="Nome"
+    [control]="formulario.get('nome')"
+  ></app-input-field>
 
   <div class="form-row">
     <div class="col-md-12">
