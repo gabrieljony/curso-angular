@@ -11,15 +11,17 @@ import { EstadoBr } from '../shared/models/estadobr.model';
 
 import { Observable, empty } from 'rxjs';
 import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 
 @Component({
   selector: 'app-data-form',
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
 
-  formulario: FormGroup;
+
+  // formulario: FormGroup;
   // estados: EstadoBr[];
   estados: Observable<EstadoBr[]>;
   cepInvalido: boolean = false;
@@ -34,7 +36,9 @@ export class DataFormComponent implements OnInit {
     private http: HttpClient,
     private cepService: ConsultarCepService,
     private dropdownService: DropdownService,
-    private verificaEmailService: VerificaEmailService) { }
+    private verificaEmailService: VerificaEmailService) {
+      super();
+     }
 
   //No momento da inicialização do component chama o ngOnInit
   ngOnInit() {
@@ -97,12 +101,11 @@ export class DataFormComponent implements OnInit {
     .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
   }
 
-  onSubmit(){
+  submit() {
     console.log(this.formulario);
     console.log(this.formulario.value);
 
-    if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
       .subscribe(dados => {
         console.log(dados);
         console.log(this.formulario.value);
@@ -112,70 +115,10 @@ export class DataFormComponent implements OnInit {
       // this.formulario.reset();
       // ou
       //this.limpar();
-
-    } else {
-      console.log('formulário invalido');
-      this.verificaValidacoesForm(this.formulario);
-    }
-  }
-
-  verificaValidacoesForm(formGroup: FormGroup) {
-
-    Object.keys(formGroup.controls).forEach(campo => {
-      console.log(campo);
-      const controle = formGroup.get(campo);
-      console.log(controle);
-      controle.markAsDirty();
-      //Validação do nivel endereco
-      if (controle instanceof FormGroup){
-        this.verificaValidacoesForm(controle);
-      }
-    })
-
-  }
-
-  limpar() {
-    //resetar o form
-    this.formulario.reset();
-    console.log(this.formulario.value);
-  }
-
-
-  //Validação
-  verificaValidTouched(campo: string) {
-    return !this.formulario.get(campo).valid &&
-    (this.formulario.get(campo).touched || this.formulario.get(campo).dirty);
-  }
-
-  //Validação Required
-  verificaValidRequired(campo: string) {
-    return (
-      this.formulario.get(campo).hasError('required') &&
-      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
-    );
-  }
-
-  verificaValidEmailInvalido() {
-    const campoEmail = this.formulario.get('email');
-    if (campoEmail.errors){
-      return campoEmail.errors['email']
-    }
   }
 
   verificaValidCep() {
     return this.cepInvalido = true;
-  }
-
-  aplicaCssErro(campo: string) {
-    return {
-      'is-invalid': this.verificaValidTouched(campo),
-    }
-  }
-
-  aplicaCssErroLabel(campo: string) {
-    return {
-      'control-label': this.verificaValidTouched(campo),
-    }
   }
 
   consultaCEP() {
@@ -248,7 +191,5 @@ export class DataFormComponent implements OnInit {
     return this.verificaEmailService.verificarEmail(formControl.value)
       .pipe(map(emailExiste => emailExiste ? { emailInvalido : true } : null));
   }
-
-
 
 }

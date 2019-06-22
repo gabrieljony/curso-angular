@@ -7,6 +7,7 @@ import { CampoControlErrorComponent } from './campo-control-error/campo-control-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { InputFieldComponent } from './input-field/input-field.component';
+import { BaseFormComponent } from './base-form/base-form.component';
 
 @NgModule({
   declarations: [
