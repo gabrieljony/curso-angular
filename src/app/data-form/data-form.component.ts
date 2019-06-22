@@ -9,8 +9,8 @@ import { DropdownService } from './../shared/services/dropdown.service';
 import { FormValidations } from './../shared/form-validation';
 import { EstadoBr } from '../shared/models/estadobr.model';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, empty } from 'rxjs';
+import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -88,7 +88,13 @@ export class DataFormComponent implements OnInit {
   //   })
   // });
 
-
+  this.formulario.get('endereco.cep').statusChanges
+    .pipe(
+      distinctUntilChanged(),
+      tap(value => console.log('Status do CEP: ', value)),
+      switchMap( status => status === 'VALID' ? this.cepService.consultaCEP(this.formulario.get('endereco.cep').value) : empty() )
+    )
+    .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
   }
 
   onSubmit(){
