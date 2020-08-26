@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DebugFormComponent } from './debug-form/debug-form.component';
+import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
 
 
 
 @NgModule({
-  declarations: [DebugFormComponent],
+  declarations: [DebugFormComponent, CampoControlErroComponent],
   exports:[
-    DebugFormComponent
+    DebugFormComponent,
+    CampoControlErroComponent
   ],
   imports: [
     CommonModule

@@ -1,4 +1,3 @@
-import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { TemplateFormModule } from './pages/template-form/template-form.module';
     ReactiveFormsModule,
     TemplateModule,
     TemplateFormModule,
-    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

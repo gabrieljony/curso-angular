@@ -17,8 +17,10 @@
         #nome="ngModel"
         [ngClass]="aplicaCssErro(nome)"
       />
-      <div>{{ nome.className }}</div>
-      <div *ngIf="!nome.valid && nome.touched">Nome é obrigatótio.</div>
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched(nome)"
+        msgErro="Nome é obrigatório."
+      ></app-campo-control-erro>
     </div>
   </div>
 
@@ -41,8 +43,10 @@
         #email="ngModel"
         [ngClass]="aplicaCssErro(email)"
       />
-      <div>{{ email.className }}</div>
-      <div *ngIf="!email.valid && email.touched">E-mail é obrigatório.</div>
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched(email)"
+        msgErro="E-mail é obrigatório."
+      ></app-campo-control-erro>
     </div>
   </div>
 
@@ -65,7 +69,11 @@
           [ngClass]="aplicaCssErro(cep)"
           (blur)="consultaCEP($event.target.value)"
         />
-        <div *ngIf="!cep.valid && cep.touched">CEP é obrigatório.</div>
+
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched(cep)"
+          msgErro="CEP é obrigatório."
+        ></app-campo-control-erro>
       </div>
       <div>
         <label
@@ -85,7 +93,10 @@
           #numero="ngModel"
           [ngClass]="aplicaCssErro(numero)"
         />
-        <div *ngIf="!numero.valid && numero.touched">Número é obrigatório.</div>
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched(numero)"
+          msgErro="Número é obrigatório."
+        ></app-campo-control-erro>
       </div>
       <div>
         <label for="complemento">Complemento</label>
@@ -119,8 +130,10 @@
           #rua="ngModel"
           [ngClass]="aplicaCssErro(rua)"
         />
-        <!-- readonly = uma diretiva do angular e do html 5 onde o campo não pode ser editado -->
-        <div *ngIf="!rua.valid && rua.touched">rua é obrigatório.</div>
+        <app-campo-control-erro
+          [mostrarErro]="verificaValidTouched(rua)"
+          msgErro="Rua é obrigatório."
+        ></app-campo-control-erro>
       </div>
     </div>
     <div ngModelGroup="localizacao">
@@ -143,9 +156,10 @@
             #bairro="ngModel"
             [ngClass]="aplicaCssErro(bairro)"
           />
-          <div *ngIf="!bairro.valid && bairro.touched">
-            bairro é obrigatório.
-          </div>
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched(bairro)"
+            msgErro="Bairro é obrigatório."
+          ></app-campo-control-erro>
         </div>
         <div>
           <label
@@ -165,9 +179,11 @@
             #cidade="ngModel"
             [ngClass]="aplicaCssErro(cidade)"
           />
-          <div *ngIf="!cidade.valid && cidade.touched">
-            cidade é obrigatório.
-          </div>
+
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched(cidade)"
+            msgErro="Cidade é obrigatório."
+          ></app-campo-control-erro>
         </div>
         <div>
           <label
@@ -187,15 +203,16 @@
             #estado="ngModel"
             [ngClass]="aplicaCssErro(estado)"
           />
-          <div *ngIf="verificaValidTouched(estado)">estado é obrigatório.</div>
+          <app-campo-control-erro
+            [mostrarErro]="verificaValidTouched(estado)"
+            msgErro="Estado é obrigatório."
+          ></app-campo-control-erro>
         </div>
       </div>
     </div>
   </div>
 
-  <button type="submit" [disabled]="!f.valid">
-    Enviar
-  </button>
+  <button type="submit" [disabled]="!f.valid">Enviar</button>
 
   <app-debug-form [form]="f"></app-debug-form>
 </form>

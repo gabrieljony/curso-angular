@@ -24,9 +24,6 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(formulario) {
-    console.log(formulario.value);
-    console.log(formulario);
-    console.log(this.usuario);
     this.http
       .post('https://httpbin.org/post', JSON.stringify(formulario.value))
       .subscribe((dados) => {
@@ -35,18 +32,18 @@ export class TemplateFormComponent implements OnInit {
       });
   }
 
-  verificaValidTouched(campo) {
-    return !campo.valid && campo.touched;
-  }
-
   aplicaCssErro(campo) {
     return {
       'is-invalid': this.verificaValidTouched(campo),
     };
   }
 
+  verificaValidTouched(campo) {
+    return !campo.valid && campo.touched;
+  }
+
   consultaCEP(cep) {
-    console.log(cep);
+    // console.log(cep);
 
     //Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
