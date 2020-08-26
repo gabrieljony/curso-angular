@@ -67,7 +67,7 @@
           cep
           #cep="ngModel"
           [ngClass]="aplicaCssErro(cep)"
-          (blur)="consultaCEP($event.target.value)"
+          (blur)="consultaCEP($event.target.value, f)"
         />
 
         <app-campo-control-erro
