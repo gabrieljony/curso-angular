@@ -23,11 +23,11 @@ export class TemplateFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //https://resttesttest.com/
   onSubmit(formulario) {
     this.http
       .post('https://httpbin.org/post', JSON.stringify(formulario.value))
       .subscribe((dados) => {
-        console.log(dados);
         formulario.form.reset();
       });
   }
