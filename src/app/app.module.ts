@@ -1,3 +1,4 @@
+import { DataFormFullModule } from './pages/data-form-full/data-form-full.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +18,8 @@ import { DataFormModule } from './pages/data-form/data-form.module';
     ReactiveFormsModule,
     TemplateModule,
     TemplateFormModule,
-    DataFormModule
+    DataFormModule,
+    DataFormFullModule
   ],
   providers: [],
   bootstrap: [AppComponent],
