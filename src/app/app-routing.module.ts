@@ -7,7 +7,7 @@ import { TemplateFormComponent } from './pages/template-form/template-form.compo
 const routes: Routes = [
   { path: 'template-form', component: TemplateFormComponent },
   { path: 'data-form', component: DataFormComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'template-form' },
+  { path: '', pathMatch: 'full', redirectTo: 'data-form' },
 ];
 
 @NgModule({

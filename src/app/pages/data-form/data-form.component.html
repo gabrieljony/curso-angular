@@ -1,1 +1,43 @@
-<p>data-form works!</p>
+<h1>data-form SIMPLES</h1>
+
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <!-- NOME -->
+  <div>
+    <div>
+      <label for="nome" [ngClass]="aplicaCssErroLabel('nome')">Nome</label>
+    </div>
+    <div>
+      <input
+        type="text"
+        id="nome"
+        placeholder="Nome"
+        formControlName="nome"
+        [ngClass]="aplicaCssErro('nome')"
+      />
+      <div *ngIf="verificaValidTouched('nome')" class="invalid-block">
+        Nome é obrigatório.
+      </div>
+    </div>
+  </div>
+  <!-- E-MAIL -->
+  <div>
+    <div>
+      <label for="email" [ngClass]="aplicaCssErroLabel('email')">E-mail</label>
+    </div>
+    <div>
+      <input
+        type="email"
+        id="email"
+        placeholder="nome@email.com"
+        formControlName="email"
+        [ngClass]="aplicaCssErro('email')"
+      />
+      <div *ngIf="verificaValidTouched('email')" class="invalid-block">
+        E-mail é obrigatório.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+  <app-debug-form [form]="formulario"></app-debug-form>
+</form>
