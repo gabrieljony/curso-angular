@@ -1,167 +1,188 @@
-<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-  <app-input-text
-    formControlName="nome"
-    [classeCssErroLabel]="aplicaCssErroLabel('nome')"
-    id="nome"
-    labelName="Nome"
-    [control]="formulario.get('nome')"
-  ></app-input-text>
+<div class="content">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="flex-col">
+    <app-input-text
+      class="marginBottom-15"
+      formControlName="nome"
+      [classeCssErroLabel]="aplicaCssErroLabel('nome')"
+      id="nome"
+      labelName="Nome"
+      [control]="formulario.get('nome')"
+    ></app-input-text>
 
-  <div>
-    <div>
-      <label for="email" [ngClass]="aplicaCssErroLabel('email')">E-mail</label>
-    </div>
-    <div>
-      <input
-        type="email"
-        id="email"
-        placeholder="nome@email.com"
-        formControlName="email"
-        [ngClass]="aplicaCssErro('email')"
-      />
-      <div *ngIf="verificaValidTouched('email')">E-mail é obrigatório.</div>
-      <div *ngIf="verificaValidEmailInvalido()">E-mail inválido.</div>
-      <div *ngIf="formulario.get('email').status === 'PENDING'">
-        Validando E-mail...
-      </div>
-      <div *ngIf="formulario.get('email').status === 'VALID'">
-        E-mail válido!
-      </div>
-      <div *ngIf="formulario.get('email').hasError('emailInvalido')">
-        E-mail já cadastrado.
-      </div>
-      <!-- 2 form de fazer a validação -->
-      <!-- <app-campo-control-error
-      [mostrarErro]="!formulario.get('email').valid && formulario.get('email').touched"
-      msgErro="E-mail é obrigatório."
-      ></app-campo-control-error> -->
-      <!-- 3 forma de fazer a validação -->
-      <!-- <app-campo-control-error
-      [mostrarErro]="!formulario.controls['email'].valid && formulario.controls['email'].touched"
-      msgErro="E-mail é obrigatório."
-      ></app-campo-control-error> -->
-      <!-- 4 forma de fazer a validação -->
-      <!-- <app-campo-control-error
-      [mostrarErro]="verificaValidTouched('email')"
-      msgErro="E-mail é obrigatório."
-      ></app-campo-control-error> -->
-    </div>
-  </div>
-  <div>
-    <div>
-      <label
-        for="confirmarEmail"
-        [ngClass]="aplicaCssErroLabel('confirmarEmail')"
-        >Confirmar E-mail</label
-      >
-    </div>
-    <div>
-      <input
-        type="email"
-        id="confirmarEmail"
-        placeholder="nome@email.com"
-        formControlName="confirmarEmail"
-        [ngClass]="aplicaCssErro('confirmarEmail')"
-      />
-      <div *ngIf="formulario.get('confirmarEmail').hasError('equalsTo')">
-        Emails não são iguais.
-      </div>
-    </div>
-  </div>
-
-  <!-- ENDEREÇO -->
-  <div formGroupName="endereco">
-    <div>
-      <div>
-        <label for="cep" [ngClass]="aplicaCssErroLabel('endereco.cep')"
-          >CEP</label
+    <div class="flex-row">
+      <div class="flex-col marginBottom-15">
+        <label for="email" [ngClass]="aplicaCssErroLabel('email')"
+          >E-mail</label
         >
         <input
-          type="text"
-          id="cep"
-          placeholder="CEP"
-          formControlName="cep"
-          [ngClass]="aplicaCssErro('endereco.cep')"
+          type="email"
+          id="email"
+          placeholder="nome@email.com"
+          formControlName="email"
+          [ngClass]="aplicaCssErro('email')"
         />
-        <!-- <input type="text"  id="cep" placeholder="CEP" formControlName="cep" [ngClass]="aplicaCssErro('endereco.cep')" (blur)="consultaCEP()"/> -->
-        <div *ngIf="verificaValidRequired('endereco.cep')">
-          CEP é obrigatório.
+        <div *ngIf="verificaValidTouched('email')" class="error-input">
+          E-mail é obrigatório.
         </div>
-        <!-- <div *ngIf="verificaValidCep('endereco.cep')" >
+        <div *ngIf="verificaValidEmailInvalido()" class="error-input">
+          E-mail inválido.
+        </div>
+        <div
+          *ngIf="formulario.get('email').status === 'PENDING'"
+          class="error-input"
+        >
+          Validando E-mail...
+        </div>
+        <div
+          *ngIf="formulario.get('email').status === 'VALID'"
+          class="error-input"
+        >
+          E-mail válido!
+        </div>
+        <div
+          *ngIf="formulario.get('email').hasError('emailInvalido')"
+          class="error-input"
+        >
+          E-mail já cadastrado.
+        </div>
+        <!-- 2 form de fazer a validação -->
+        <!-- <app-campo-control-error
+        [mostrarErro]="!formulario.get('email').valid && formulario.get('email').touched"
+        msgErro="E-mail é obrigatório."
+        ></app-campo-control-error> -->
+        <!-- 3 forma de fazer a validação -->
+        <!-- <app-campo-control-error
+        [mostrarErro]="!formulario.controls['email'].valid && formulario.controls['email'].touched"
+        msgErro="E-mail é obrigatório."
+        ></app-campo-control-error> -->
+        <!-- 4 forma de fazer a validação -->
+        <!-- <app-campo-control-error
+        [mostrarErro]="verificaValidTouched('email')"
+        msgErro="E-mail é obrigatório."
+        ></app-campo-control-error> -->
+      </div>
+
+      <div class="flex-col marginBottom-15">
+        <label
+          for="confirmarEmail"
+          [ngClass]="aplicaCssErroLabel('confirmarEmail')"
+          >Confirmar E-mail</label
+        >
+        <input
+          type="email"
+          id="confirmarEmail"
+          placeholder="nome@email.com"
+          formControlName="confirmarEmail"
+          [ngClass]="aplicaCssErro('confirmarEmail')"
+        />
+        <div
+          *ngIf="formulario.get('confirmarEmail').hasError('equalsTo')"
+          class="error-input"
+        >
+          Emails não são iguais.
+        </div>
+      </div>
+    </div>
+
+    <!-- ENDEREÇO -->
+    <div formGroupName="endereco">
+      <div class="flex-row">
+        <div class="marginBottom-15">
+          <label for="cep" [ngClass]="aplicaCssErroLabel('endereco.cep')"
+            >CEP</label
+          >
+          <input
+            type="text"
+            id="cep"
+            placeholder="CEP"
+            formControlName="cep"
+            [ngClass]="aplicaCssErro('endereco.cep')"
+          />
+          <!-- <input type="text"  id="cep" placeholder="CEP" formControlName="cep" [ngClass]="aplicaCssErro('endereco.cep')" (blur)="consultaCEP()"/> -->
+          <div
+            *ngIf="verificaValidRequired('endereco.cep')"
+            class="error-input"
+          >
+            CEP é obrigatório.
+          </div>
+          <!-- <div *ngIf="verificaValidCep('endereco.cep')" >
           CEP é inválido.
         </div> -->
-        <div *ngIf="formulario.get('endereco.cep').hasError('cepInvalido')">
-          Este CEP está inválido.
+          <div
+            *ngIf="formulario.get('endereco.cep').hasError('cepInvalido')"
+            class="error-input"
+          >
+            Este CEP está inválido.
+          </div>
+        </div>
+        <div class="marginBottom-15">
+          <label for="numero" [ngClass]="aplicaCssErroLabel('endereco.numero')"
+            >Número</label
+          >
+          <input
+            type="text"
+            id="numero"
+            placeholder="Número"
+            formControlName="numero"
+            [ngClass]="aplicaCssErro('endereco.numero')"
+          />
+          <div
+            *ngIf="verificaValidTouched('endereco.numero')"
+            class="error-input"
+          >
+            Número é obrigatório.
+          </div>
+        </div>
+        <div class="marginBottom-15">
+          <label for="complemento">Complemento</label>
+          <input
+            type="text"
+            id="complemento"
+            placeholder="Complemento"
+            formControlName="complemento"
+            readonly
+          />
         </div>
       </div>
-      <div>
-        <label for="numero" [ngClass]="aplicaCssErroLabel('endereco.numero')"
-          >Número</label
-        >
-        <input
-          type="text"
-          id="numero"
-          placeholder="Número"
-          formControlName="numero"
-          [ngClass]="aplicaCssErro('endereco.numero')"
-        />
-        <div *ngIf="verificaValidTouched('endereco.numero')">
-          Número é obrigatório.
+
+      <div class="flex-row">
+        <div class="flex-col marginBottom-15">
+          <label for="rua" [ngClass]="aplicaCssErroLabel('endereco.rua')"
+            >Rua</label
+          >
+          <input
+            type="text"
+            id="rua"
+            placeholder="Rua"
+            formControlName="rua"
+            [ngClass]="aplicaCssErro('endereco.rua')"
+          />
+          <div *ngIf="verificaValidTouched('endereco.rua')" class="error-input">
+            Rua é obrigatório.
+          </div>
         </div>
-      </div>
-      <div>
-        <label for="complemento">Complemento</label>
-        <input
-          type="text"
-          id="complemento"
-          placeholder="Complemento"
-          formControlName="complemento"
-          readonly
-        />
-      </div>
-    </div>
-    <div>
-      <div>
-        <label for="rua" [ngClass]="aplicaCssErroLabel('endereco.rua')"
-          >rua</label
-        >
-        <input
-          type="text"
-          id="rua"
-          placeholder="rua"
-          formControlName="rua"
-          [ngClass]="aplicaCssErro('endereco.rua')"
-        />
-        <div *ngIf="verificaValidTouched('endereco.rua')">
-          rua é obrigatório.
-        </div>
-      </div>
-    </div>
-    <div>
-      <div>
-        <div>
+        <div class="flex-col marginBottom-15">
           <label for="bairro" [ngClass]="aplicaCssErroLabel('endereco.bairro')"
-            >bairro</label
+            >Bairro</label
           >
           <input
             type="text"
             id="bairro"
-            placeholder="bairro"
+            placeholder="Bairro"
             formControlName="bairro"
             [ngClass]="aplicaCssErro('endereco.bairro')"
           />
-          <div *ngIf="verificaValidTouched('endereco.bairro')">
-            bairro é obrigatório.
+          <div
+            *ngIf="verificaValidTouched('endereco.bairro')"
+            class="error-input"
+          >
+            Bairro é obrigatório.
           </div>
         </div>
-        <!-- <div >
-          <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.cidade')">cidade</label>
-          <input type="text"  id="cidade" placeholder="cidade" formControlName="cidade" [ngClass]="aplicaCssErro('endereco.cidade')"/>
-          <div *ngIf="verificaValidTouched('endereco.cidade')" >
-            cidade é obrigatório.
-          </div>
-        </div> -->
-        <div>
+      </div>
+
+      <div class="flex-row">
+        <div class="flex-col marginBottom-15">
           <label for="estado" [ngClass]="aplicaCssErroLabel('endereco.estado')"
             >Estado</label
           >
@@ -174,11 +195,15 @@
               {{ estado.nome }}
             </option>
           </select>
-          <div *ngIf="verificaValidTouched('endereco.estado')">
-            estado é obrigatório.
+          <div
+            *ngIf="verificaValidTouched('endereco.estado')"
+            class="error-input"
+          >
+            Estado é obrigatório.
           </div>
         </div>
-        <div>
+
+        <!-- <div class="flex-col" *ngIf="formulario.get('endereco.estado').value">
           <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.cidade')"
             >Cidade</label
           >
@@ -192,16 +217,35 @@
             </option>
           </select>
           <div *ngIf="verificaValidTouched('endereco.cidade')">
-            estado é obrigatório.
+            Cidade é obrigatório.
+          </div>
+        </div> -->
+
+        <div class="flex-col marginBottom-15">
+          <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.cidade')"
+            >Cidade</label
+          >
+          <input
+            type="text"
+            id="cidade"
+            placeholder="Cidade"
+            formControlName="cidade"
+            [ngClass]="aplicaCssErro('endereco.cidade')"
+          />
+          <div
+            *ngIf="verificaValidTouched('endereco.cidade')"
+            class="error-input"
+          >
+            Cidade é obrigatório.
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- FIM DO ENDEREÇO -->
-  <div>
-    <div>
-      <label for="cargo" [ngClass]="aplicaCssErroLabel('cargo')">cargo</label>
+
+    <!-- FIM DO ENDEREÇO -->
+
+    <div class="flex-col marginBottom-15">
+      <label for="cargo" [ngClass]="aplicaCssErroLabel('cargo')">Cargo</label>
       <select
         id="cargo"
         formControlName="cargo"
@@ -213,10 +257,8 @@
         </option>
       </select>
     </div>
-  </div>
 
-  <div>
-    <div>
+    <div class="flex-col marginBottom-15">
       <label for="tecnologia" [ngClass]="aplicaCssErroLabel('tecnologia')"
         >Tecnologia</label
       >
@@ -234,14 +276,12 @@
         </option>
       </select>
     </div>
-  </div>
 
-  <div>
-    <div>
+    <div class="flex-col" class="marginBottom-15">
       <label for="newsletter" [ngClass]="aplicaCssErroLabel('newsletter')"
-        >newsletter</label
+        >Newsletter</label
       >
-      <div id="newsletter">
+      <div id="newsletter" class="flex-row">
         <div *ngFor="let item of newsletterOp">
           <label>
             <input
@@ -254,25 +294,35 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div>
-    <div [ngClass]="aplicaCssErroLabel('termos')">
-      <div>
-        <label>
-          <input type="checkbox" formControlName="termos" /> aceito os Termos
-        </label>
-        <div *ngIf="!formulario.get('termos').valid">
-          Por favor aceite os termos.
-        </div>
+    <div [ngClass]="aplicaCssErroLabel('termos')" class="marginBottom-15">
+      <label>
+        <input type="checkbox" formControlName="termos" />Aceito os Termos
+      </label>
+      <div *ngIf="!formulario.get('termos').valid">
+        Por favor aceite os termos.
       </div>
     </div>
-  </div>
 
-  <app-button btnType="submit" name="Enviar"></app-button>
-  <app-button name="Limpar" (click)="limpar()"></app-button>
-  <app-button name="Cargo" (click)="setarCargo()"></app-button>
-  <app-button name="Tecnologias" (click)="setarTecnologias()"></app-button>
+    <div class="flex-row">
+      <app-button
+        class="marginRight-15"
+        name="Enviar"
+        btnType="submit"
+      ></app-button>
+      <app-button
+        class="marginRight-15"
+        name="Limpar"
+        (click)="limpar()"
+      ></app-button>
+      <app-button
+        class="marginRight-15"
+        name="Cargo"
+        (click)="setarCargo()"
+      ></app-button>
+      <app-button name="Tecnologias" (click)="setarTecnologias()"></app-button>
+    </div>
 
-  <app-debug-form [form]="formulario"></app-debug-form>
-</form>
+    <app-debug-form [form]="formulario"></app-debug-form>
+  </form>
+</div>

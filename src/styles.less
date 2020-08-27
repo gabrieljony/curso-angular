@@ -1,8 +1,40 @@
 /* Add global styles */
-body,
+@color-primary: #007bff;
+@color-secundary: #286090;
+@color-white: #ffffff;
+@color-black: #345;
+@color-error: #dc3545;
+@color-success: #28a745;
+
 * {
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  color: @color-black;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+body,
+ul,
+li,
+h1,
+h2,
+p,
+span,
+label {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul {
+  list-style: none;
 }
 
 textarea:focus,
@@ -10,6 +42,43 @@ input:focus,
 button:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
+}
+
+a {
+  color: @color-black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  border-radius: 4px;
+  border: 1px solid @color-white;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
+  border-color: @color-primary;
 }
 
 .flex-row {
@@ -22,6 +91,10 @@ button:focus {
   flex-direction: column;
 }
 
-.marginRight-15{
+.marginRight-15 {
   margin-right: 15px;
+}
+
+.marginBottom-15 {
+  margin-bottom: 15px;
 }
