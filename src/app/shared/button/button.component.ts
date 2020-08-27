@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./button.component.less'],
 })
 export class ButtonComponent implements OnInit {
-  @Input() itype: string = 'submit';
+  @Input() btnType: string = 'button';
   @Input() idisabled: boolean = false;
   @Input() name: string;
 

@@ -1,3 +1,4 @@
+import { DataFormFullComponent } from './pages/data-form-full/data-form-full.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,7 +8,8 @@ import { TemplateFormComponent } from './pages/template-form/template-form.compo
 const routes: Routes = [
   { path: 'template-form', component: TemplateFormComponent },
   { path: 'data-form', component: DataFormComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'data-form' },
+  { path: 'data-form-full', component: DataFormFullComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'data-form-full' },
 ];
 
 @NgModule({

@@ -1,0 +1,5 @@
+<div>
+  <label [attr.for]="id" [ngClass]="classeCssErroLabel">{{ labelName }}</label>
+  <input [type]="type" [id]="id" [readonly]="!!isReadOnly" [(ngModel)]="value"/>
+  <app-error-msg [control]="control" [label]="labelName"></app-error-msg>
+</div>

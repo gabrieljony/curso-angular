@@ -1,1 +1,278 @@
-<p>data-form-full works!</p>
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <app-input-text
+    formControlName="nome"
+    [classeCssErroLabel]="aplicaCssErroLabel('nome')"
+    id="nome"
+    labelName="Nome"
+    [control]="formulario.get('nome')"
+  ></app-input-text>
+
+  <div>
+    <div>
+      <label for="email" [ngClass]="aplicaCssErroLabel('email')">E-mail</label>
+    </div>
+    <div>
+      <input
+        type="email"
+        id="email"
+        placeholder="nome@email.com"
+        formControlName="email"
+        [ngClass]="aplicaCssErro('email')"
+      />
+      <div *ngIf="verificaValidTouched('email')">E-mail é obrigatório.</div>
+      <div *ngIf="verificaValidEmailInvalido()">E-mail inválido.</div>
+      <div *ngIf="formulario.get('email').status === 'PENDING'">
+        Validando E-mail...
+      </div>
+      <div *ngIf="formulario.get('email').status === 'VALID'">
+        E-mail válido!
+      </div>
+      <div *ngIf="formulario.get('email').hasError('emailInvalido')">
+        E-mail já cadastrado.
+      </div>
+      <!-- 2 form de fazer a validação -->
+      <!-- <app-campo-control-error
+      [mostrarErro]="!formulario.get('email').valid && formulario.get('email').touched"
+      msgErro="E-mail é obrigatório."
+      ></app-campo-control-error> -->
+      <!-- 3 forma de fazer a validação -->
+      <!-- <app-campo-control-error
+      [mostrarErro]="!formulario.controls['email'].valid && formulario.controls['email'].touched"
+      msgErro="E-mail é obrigatório."
+      ></app-campo-control-error> -->
+      <!-- 4 forma de fazer a validação -->
+      <!-- <app-campo-control-error
+      [mostrarErro]="verificaValidTouched('email')"
+      msgErro="E-mail é obrigatório."
+      ></app-campo-control-error> -->
+    </div>
+  </div>
+  <div>
+    <div>
+      <label
+        for="confirmarEmail"
+        [ngClass]="aplicaCssErroLabel('confirmarEmail')"
+        >Confirmar E-mail</label
+      >
+    </div>
+    <div>
+      <input
+        type="email"
+        id="confirmarEmail"
+        placeholder="nome@email.com"
+        formControlName="confirmarEmail"
+        [ngClass]="aplicaCssErro('confirmarEmail')"
+      />
+      <div *ngIf="formulario.get('confirmarEmail').hasError('equalsTo')">
+        Emails não são iguais.
+      </div>
+    </div>
+  </div>
+
+  <!-- ENDEREÇO -->
+  <div formGroupName="endereco">
+    <div>
+      <div>
+        <label for="cep" [ngClass]="aplicaCssErroLabel('endereco.cep')"
+          >CEP</label
+        >
+        <input
+          type="text"
+          id="cep"
+          placeholder="CEP"
+          formControlName="cep"
+          [ngClass]="aplicaCssErro('endereco.cep')"
+        />
+        <!-- <input type="text"  id="cep" placeholder="CEP" formControlName="cep" [ngClass]="aplicaCssErro('endereco.cep')" (blur)="consultaCEP()"/> -->
+        <div *ngIf="verificaValidRequired('endereco.cep')">
+          CEP é obrigatório.
+        </div>
+        <!-- <div *ngIf="verificaValidCep('endereco.cep')" >
+          CEP é inválido.
+        </div> -->
+        <div *ngIf="formulario.get('endereco.cep').hasError('cepInvalido')">
+          Este CEP está inválido.
+        </div>
+      </div>
+      <div>
+        <label for="numero" [ngClass]="aplicaCssErroLabel('endereco.numero')"
+          >Número</label
+        >
+        <input
+          type="text"
+          id="numero"
+          placeholder="Número"
+          formControlName="numero"
+          [ngClass]="aplicaCssErro('endereco.numero')"
+        />
+        <div *ngIf="verificaValidTouched('endereco.numero')">
+          Número é obrigatório.
+        </div>
+      </div>
+      <div>
+        <label for="complemento">Complemento</label>
+        <input
+          type="text"
+          id="complemento"
+          placeholder="Complemento"
+          formControlName="complemento"
+          readonly
+        />
+      </div>
+    </div>
+    <div>
+      <div>
+        <label for="rua" [ngClass]="aplicaCssErroLabel('endereco.rua')"
+          >rua</label
+        >
+        <input
+          type="text"
+          id="rua"
+          placeholder="rua"
+          formControlName="rua"
+          [ngClass]="aplicaCssErro('endereco.rua')"
+        />
+        <div *ngIf="verificaValidTouched('endereco.rua')">
+          rua é obrigatório.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div>
+          <label for="bairro" [ngClass]="aplicaCssErroLabel('endereco.bairro')"
+            >bairro</label
+          >
+          <input
+            type="text"
+            id="bairro"
+            placeholder="bairro"
+            formControlName="bairro"
+            [ngClass]="aplicaCssErro('endereco.bairro')"
+          />
+          <div *ngIf="verificaValidTouched('endereco.bairro')">
+            bairro é obrigatório.
+          </div>
+        </div>
+        <!-- <div >
+          <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.cidade')">cidade</label>
+          <input type="text"  id="cidade" placeholder="cidade" formControlName="cidade" [ngClass]="aplicaCssErro('endereco.cidade')"/>
+          <div *ngIf="verificaValidTouched('endereco.cidade')" >
+            cidade é obrigatório.
+          </div>
+        </div> -->
+        <div>
+          <label for="estado" [ngClass]="aplicaCssErroLabel('endereco.estado')"
+            >Estado</label
+          >
+          <select
+            id="estado"
+            formControlName="estado"
+            [ngClass]="aplicaCssErro('endereco.estado')"
+          >
+            <option *ngFor="let estado of estados" [value]="estado.sigla">
+              {{ estado.nome }}
+            </option>
+          </select>
+          <div *ngIf="verificaValidTouched('endereco.estado')">
+            estado é obrigatório.
+          </div>
+        </div>
+        <div>
+          <label for="cidade" [ngClass]="aplicaCssErroLabel('endereco.cidade')"
+            >Cidade</label
+          >
+          <select
+            id="estado"
+            formControlName="cidade"
+            [ngClass]="aplicaCssErro('endereco.cidade')"
+          >
+            <option *ngFor="let cidade of cidades" [value]="cidade.nome">
+              {{ cidade.nome }}
+            </option>
+          </select>
+          <div *ngIf="verificaValidTouched('endereco.cidade')">
+            estado é obrigatório.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIM DO ENDEREÇO -->
+  <div>
+    <div>
+      <label for="cargo" [ngClass]="aplicaCssErroLabel('cargo')">cargo</label>
+      <select
+        id="cargo"
+        formControlName="cargo"
+        [ngClass]="aplicaCssErro('cargo')"
+        [compareWith]="compararCargos"
+      >
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo">
+          {{ cargo.descricao }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <label for="tecnologia" [ngClass]="aplicaCssErroLabel('tecnologia')"
+        >Tecnologia</label
+      >
+      <select
+        multiple
+        id="tecnologia"
+        formControlName="tecnologia"
+        [ngClass]="aplicaCssErro('tecnologia')"
+      >
+        <option
+          *ngFor="let tecnologia of tecnologias"
+          [value]="tecnologia.nome"
+        >
+          {{ tecnologia.descricao }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <label for="newsletter" [ngClass]="aplicaCssErroLabel('newsletter')"
+        >newsletter</label
+      >
+      <div id="newsletter">
+        <div *ngFor="let item of newsletterOp">
+          <label>
+            <input
+              type="radio"
+              [value]="item.valor"
+              formControlName="newsletter"
+            />
+            {{ item.desc }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div [ngClass]="aplicaCssErroLabel('termos')">
+      <div>
+        <label>
+          <input type="checkbox" formControlName="termos" /> aceito os Termos
+        </label>
+        <div *ngIf="!formulario.get('termos').valid">
+          Por favor aceite os termos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-button btnType="submit" name="Enviar"></app-button>
+  <app-button name="Limpar" (click)="limpar()"></app-button>
+  <app-button name="Cargo" (click)="setarCargo()"></app-button>
+  <app-button name="Tecnologias" (click)="setarTecnologias()"></app-button>
+
+  <app-debug-form [form]="formulario"></app-debug-form>
+</form>

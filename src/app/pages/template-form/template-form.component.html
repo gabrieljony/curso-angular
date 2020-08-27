@@ -203,7 +203,9 @@
     </div>
   </section>
 
-  <app-button [idisabled]="!f.valid" name="Enviar">Enviar</app-button>
+  <app-button [idisabled]="!f.valid" name="Enviar" btnType="submit"
+    >Enviar</app-button
+  >
 
   <app-debug-form [form]="f"></app-debug-form>
 </form>
