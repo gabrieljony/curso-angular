@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './base-form.component.html',
   styleUrls: ['./base-form.component.less'],
 })
-export abstract class BaseFormComponent{
+export abstract class BaseFormComponent {
   formulario: FormGroup;
 
   constructor() {}
@@ -43,8 +43,9 @@ export abstract class BaseFormComponent{
   }
 
   //Validação
-  verificaValidTouched(campo: string) {
+  verificaValidTouched(campo: string): boolean {
     return (
+      this.formulario.get(campo) &&
       !this.formulario.get(campo).valid &&
       (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
     );
@@ -65,8 +66,13 @@ export abstract class BaseFormComponent{
     }
   }
 
+  aplicaCssValid(campo: string) {
+    return this.formulario.get(campo).status === 'VALID';
+  }
+
   aplicaCssErro(campo: string) {
     return {
+      'is-valid': this.aplicaCssValid(campo),
       'is-invalid': this.verificaValidTouched(campo),
     };
   }

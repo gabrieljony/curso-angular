@@ -11,9 +11,10 @@ import { AppComponent } from './app.component';
 import { TemplateModule } from './template/template.module';
 import { TemplateFormModule } from './pages/template-form/template-form.module';
 import { DataFormModule } from './pages/data-form/data-form.module';
+import { DataFormBuilderComponent } from './pages/data-form-builder/data-form-builder.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DataFormBuilderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

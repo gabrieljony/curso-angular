@@ -57,7 +57,7 @@ export class DataFormFullComponent extends BaseFormComponent implements OnInit {
     // FormGroup
     //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
 
-    console.log('this.formulario', this.formulario)
+    // console.log('this.formulario', this.formulario);
     this.formulario = new FormGroup({
       nome: new FormControl(null, [
         Validators.required,
@@ -94,8 +94,9 @@ export class DataFormFullComponent extends BaseFormComponent implements OnInit {
     //Instanciar uma classe usando o FormBuilder e a classe recebe um objeto como parâmetro
 
     // this.formulario = this.formBuilder.group({
-      // nome: [null, Validators.required],
+    //   nome: [null, Validators.required],
     //   email: [null, [Validators.required, Validators.email]],
+    //   confirmarEmail: [null, [Validators.required, Validators.email]],
     //   endereco: this.formBuilder.group({
     //     cep: [null, Validators.required],
     //     numero: [null, Validators.required],
@@ -106,7 +107,7 @@ export class DataFormFullComponent extends BaseFormComponent implements OnInit {
     //     estado: [null, Validators.required],
     //   }),
     //   cargo: [null],
-    //   tecnologias: [null],
+    //   tecnologia: [null],
     //   newsletter: ['s'],
     //   termos: [null, Validators.pattern('true')],
     // });

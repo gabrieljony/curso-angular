@@ -1,0 +1,75 @@
+<div class="content">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="flex-col">
+    <div class="flex-row">
+      <div class="flex-col marginBottom-15">
+        <label for="nome" [ngClass]="aplicaCssErroLabel('nome')">Nome</label>
+        <input
+          type="email"
+          id="nome"
+          placeholder="Nome"
+          formControlName="nome"
+          [ngClass]="aplicaCssErro('nome')"
+        />
+        <div *ngIf="verificaValidTouched('nome')" class="error-input">
+          Nome é obrigatório.
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-col marginBottom-15">
+        <label for="email" [ngClass]="aplicaCssErroLabel('email')"
+          >E-mail</label
+        >
+        <input
+          type="email"
+          id="email"
+          placeholder="nome@email.com"
+          formControlName="email"
+          [ngClass]="aplicaCssErro('email')"
+        />
+        <div
+          *ngIf="verificaValidTouched('email') && !verificaValidEmailInvalido()"
+          class="error-input"
+        >
+          E-mail é obrigatório.
+        </div>
+        <div *ngIf="verificaValidEmailInvalido()" class="error-input">
+          E-mail inválido.
+        </div>
+        <div
+          *ngIf="formulario.get('email').status === 'PENDING'"
+          class="error-input"
+        >
+          Validando E-mail...
+        </div>
+        <div
+          *ngIf="formulario.get('email').hasError('emailInvalido')"
+          class="error-input"
+        >
+          E-mail já cadastrado.
+        </div>
+      </div>
+      <div class="flex-col marginBottom-15">
+        <label
+          for="confirmarEmail"
+          [ngClass]="aplicaCssErroLabel('confirmarEmail')"
+          >Confirmar E-mail</label
+        >
+        <input
+          type="email"
+          id="confirmarEmail"
+          placeholder="nome@email.com"
+          formControlName="confirmarEmail"
+          [ngClass]="aplicaCssErro('confirmarEmail')"
+        />
+        <div
+          *ngIf="formulario.get('confirmarEmail').hasError('equalsTo')"
+          class="error-input"
+        >
+          Emails não são iguais.
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
