@@ -6,12 +6,10 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './base-form.component.html',
   styleUrls: ['./base-form.component.less'],
 })
-export abstract class BaseFormComponent implements OnInit {
+export abstract class BaseFormComponent{
   formulario: FormGroup;
 
   constructor() {}
-
-  ngOnInit() {}
 
   abstract submit();
 

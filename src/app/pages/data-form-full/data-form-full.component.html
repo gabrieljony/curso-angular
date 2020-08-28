@@ -299,7 +299,7 @@
       <label>
         <input type="checkbox" formControlName="termos" />Aceito os Termos
       </label>
-      <div *ngIf="!formulario.get('termos').valid">
+      <div *ngIf="verificaValidTouched('termos')" class="error-input">
         Por favor aceite os termos.
       </div>
     </div>

@@ -57,6 +57,7 @@ export class DataFormFullComponent extends BaseFormComponent implements OnInit {
     // FormGroup
     //Instanciar uma classe FormGroup e a classe recebe um objeto como parâmetro - nome e email
 
+    console.log('this.formulario', this.formulario)
     this.formulario = new FormGroup({
       nome: new FormControl(null, [
         Validators.required,
@@ -85,7 +86,7 @@ export class DataFormFullComponent extends BaseFormComponent implements OnInit {
       }),
       cargo: new FormControl(null),
       tecnologia: new FormControl(null),
-      newsletter: new FormControl(null),
+      newsletter: new FormControl('s'),
       termos: new FormControl(null, Validators.pattern('true')),
     });
 
@@ -93,35 +94,39 @@ export class DataFormFullComponent extends BaseFormComponent implements OnInit {
     //Instanciar uma classe usando o FormBuilder e a classe recebe um objeto como parâmetro
 
     // this.formulario = this.formBuilder.group({
-    //   nome:[null, Validators.required],
-    //   email:[null, [Validators.required, Validators.email]],
+      // nome: [null, Validators.required],
+    //   email: [null, [Validators.required, Validators.email]],
     //   endereco: this.formBuilder.group({
-    //     cep:[null, Validators.required],
-    //     numero:[null, Validators.required],
-    //     complemento:[null],
-    //     rua:[null, Validators.required],
-    //     bairro:[null, Validators.required],
-    //     cidade:[null, Validators.required],
-    //     estado:[null, Validators.required]
-    //   })
+    //     cep: [null, Validators.required],
+    //     numero: [null, Validators.required],
+    //     complemento: [null],
+    //     rua: [null, Validators.required],
+    //     bairro: [null, Validators.required],
+    //     cidade: [null, Validators.required],
+    //     estado: [null, Validators.required],
+    //   }),
+    //   cargo: [null],
+    //   tecnologias: [null],
+    //   newsletter: ['s'],
+    //   termos: [null, Validators.pattern('true')],
     // });
 
-    this.formulario
-      .get('endereco.cep')
-      .statusChanges// .pipe(
-      //   distinctUntilChanged(),
-      //   tap((value) => console.log('Status do CEP: ', value)),
-      //   switchMap((status) =>
-      //     status === 'VALID'
-      //       ? this.cepService.consultaCEP(
-      //           this.formulario.get('endereco.cep').value
-      //         )
-      //       : empty()
-      //   )
-      // )
-      .subscribe((dados) => (dados ? this.populaDadosForm(dados) : {}));
+    // this.formulario
+    //   .get('endereco.cep')
+    //   .statusChanges  .pipe(
+    //   distinctUntilChanged(),
+    //   tap((value) => console.log('Status do CEP: ', value)),
+    //   switchMap((status) =>
+    //     status === 'VALID'
+    //       ? this.cepService.consultaCEP(
+    //           this.formulario.get('endereco.cep').value
+    //         )
+    //       : empty()
+    //   )
+    // )
+    // .subscribe((dados) => (dados ? this.populaDadosForm(dados) : {}));
 
-    this.formulario.get('endereco.estado').valueChanges;
+    // this.formulario.get('endereco.estado').valueChanges;
     // .pipe(
     //   tap(estado => console.log('Novo estado: ', estado)),
     //   map(estado => this.estados.filter(e=>e.sigla === estado)),
