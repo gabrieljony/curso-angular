@@ -11,10 +11,10 @@ import { AppComponent } from './app.component';
 import { TemplateModule } from './template/template.module';
 import { TemplateFormModule } from './pages/template-form/template-form.module';
 import { DataFormModule } from './pages/data-form/data-form.module';
-import { DataFormBuilderComponent } from './pages/data-form-builder/data-form-builder.component';
+import { DataFormBuilderModule } from './pages/data-form-builder/data-form-builder.module';
 
 @NgModule({
-  declarations: [AppComponent, DataFormBuilderComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +23,8 @@ import { DataFormBuilderComponent } from './pages/data-form-builder/data-form-bu
     TemplateModule,
     TemplateFormModule,
     DataFormModule,
-    DataFormFullModule
+    DataFormFullModule,
+    DataFormBuilderModule,
   ],
   providers: [VerificarEmailService, ConsultarCepService, ListService],
   bootstrap: [AppComponent],
