@@ -11,6 +11,7 @@ import { ConsultarCepService } from './../../services/consultar-cep.service';
 import { ListService } from './../../services/list.service';
 import { CidadeBr } from './../../models/cidadebr.model';
 import { EstadoBr } from './../../models/estadobr.model';
+import { FormValidations } from './../../shared/validation/form-validation';
 
 @Component({
   templateUrl: './data-form-builder.component.html',
@@ -68,33 +69,11 @@ export class DataFormBuilderComponent
 
   buildFrameworks() {
     const values = this.frameworks.map((v) => new FormControl(false));
-    return this.formBuilder.array(values, this.requireMinCheckbox(1));
+    return this.formBuilder.array(values, FormValidations.requireMinCheckbox(1));
   }
 
   get formData() {
     return <FormArray>this.formulario.get('frameworks');
-  }
-
-  requireMinCheckbox(min = 1) {
-    const validator = (formArray: FormArray) => {
-      /* A Validação Customizada pode ser feita com a programação estruturada:
-       * const values = formArray.controls;
-       * let totalChecked = 0;
-       * for(let i=0; i < values.length; i++){
-       *    if(values[i].value){
-       *     totalChecked += 1
-       *    }
-       * }
-       * return totalChecked >= min ? null : { required: true }
-       */
-
-      // Programação mais funcional
-      const values = formArray.controls
-        .map((v) => v.value)
-        .reduce((total, current) => (current ? total + current : total), 0);
-      return values >= min ? null : { required: true };
-    };
-    return validator;
   }
 
   submit(): void {

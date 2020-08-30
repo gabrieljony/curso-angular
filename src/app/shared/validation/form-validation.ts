@@ -62,4 +62,26 @@ export class FormValidations {
     return config[validatorName];
   }
 
+  static requireMinCheckbox(min = 1) {
+    const validator = (formArray: FormArray) => {
+      /* A Validação Customizada pode ser feita com a programação estruturada:
+       * const values = formArray.controls;
+       * let totalChecked = 0;
+       * for(let i=0; i < values.length; i++){
+       *    if(values[i].value){
+       *     totalChecked += 1
+       *    }
+       * }
+       * return totalChecked >= min ? null : { required: true }
+       */
+
+      // Programação mais funcional
+      const values = formArray.controls
+        .map((v) => v.value)
+        .reduce((total, current) => (current ? total + current : total), 0);
+      return values >= min ? null : { required: true };
+    };
+    return validator;
+  }
+
 }
