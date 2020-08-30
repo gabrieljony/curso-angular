@@ -24,9 +24,9 @@ export abstract class BaseFormComponent {
 
   verificaValidacoesForm(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((campo) => {
-      console.log(campo);
+      // console.log(campo);
       const controle = formGroup.get(campo);
-      console.log(controle);
+      // console.log(controle);
       controle.markAsDirty();
       controle.markAsTouched();
       //Validação do nivel endereco
@@ -39,7 +39,7 @@ export abstract class BaseFormComponent {
   limpar() {
     //resetar o form
     this.formulario.reset();
-    console.log(this.formulario.value);
+    // console.log(this.formulario.value);
   }
 
   //Validação

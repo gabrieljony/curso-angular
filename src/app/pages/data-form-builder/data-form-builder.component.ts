@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormArray,
+} from '@angular/forms';
 
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { ConsultarCepService } from './../../services/consultar-cep.service';
@@ -22,6 +27,8 @@ export class DataFormBuilderComponent
   cargos: any[];
   tecnologias: any[];
   newsletterOp: any[];
+
+  frameworks = ['Angular', 'React', 'Vue'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,11 +62,29 @@ export class DataFormBuilderComponent
       tecnologia: [null],
       newsletter: ['s'],
       termos: [null, Validators.pattern('true')],
+      frameworks: this.buildFrameworks(),
     });
   }
 
+  buildFrameworks() {
+    const values = this.frameworks.map((v) => new FormControl(false));
+    return this.formBuilder.array(values);
+  }
+
+  get formData() {
+    return <FormArray>this.formulario.get('frameworks');
+  }
+
   submit(): void {
-    console.log(this.formulario);
+    // console.log(this.formulario);
+    let valueSubmit = Object.assign({}, this.formulario.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: valueSubmit.frameworks
+        .map((v, i) => (v ? this.frameworks[i] : null))
+        .filter((v) => v !== null),
+    });
+    console.log('valueSubmit', valueSubmit);
   }
 
   consultaCEP(): void {

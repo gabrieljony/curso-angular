@@ -290,6 +290,26 @@
       </div>
     </div>
 
+    <div [ngClass]="aplicaCssErroLabel('frameworks')" class="marginBottom-15">
+      <label for="frameworks">Frameworks</label>
+      <div
+        id="frameworks"
+        class="flex-row"
+        formArrayName="frameworks"
+        *ngFor="
+          let item of formData.controls;
+          let i = index
+        "
+      >
+        <label>
+          <input type="checkbox" [formControlName]="i" />{{ frameworks[i] }}
+        </label>
+      </div>
+      <div *ngIf="verificaValidTouched('frameworks')" class="error-input">
+        Por favor aceite os termos.
+      </div>
+    </div>
+
     <div class="flex-row">
       <app-button
         class="marginRight-15"
