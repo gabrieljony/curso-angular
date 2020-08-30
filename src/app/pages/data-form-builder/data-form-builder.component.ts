@@ -68,11 +68,33 @@ export class DataFormBuilderComponent
 
   buildFrameworks() {
     const values = this.frameworks.map((v) => new FormControl(false));
-    return this.formBuilder.array(values);
+    return this.formBuilder.array(values, this.requireMinCheckbox(1));
   }
 
   get formData() {
     return <FormArray>this.formulario.get('frameworks');
+  }
+
+  requireMinCheckbox(min = 1) {
+    const validator = (formArray: FormArray) => {
+      /* A Validação Customizada pode ser feita com a programação estruturada:
+       * const values = formArray.controls;
+       * let totalChecked = 0;
+       * for(let i=0; i < values.length; i++){
+       *    if(values[i].value){
+       *     totalChecked += 1
+       *    }
+       * }
+       * return totalChecked >= min ? null : { required: true }
+       */
+
+      // Programação mais funcional
+      const values = formArray.controls
+        .map((v) => v.value)
+        .reduce((total, current) => (current ? total + current : total), 0);
+      return values >= min ? null : { required: true };
+    };
+    return validator;
   }
 
   submit(): void {
@@ -80,11 +102,11 @@ export class DataFormBuilderComponent
     let valueSubmit = Object.assign({}, this.formulario.value);
 
     /*
-    * Vamos fazer um replace=substituir, e é dessa forma que trabalhamos com
-    * imutabilidade de objetos que é uma coisa
-    * que podemos utilizar para melhorar a performace do Angular  que é também
-    * usado em varias bibliotecas como o redux. REDUX no Angular
-    */
+     * Vamos fazer um replace=substituir, e é dessa forma que trabalhamos com
+     * imutabilidade de objetos que é uma coisa
+     * que podemos utilizar para melhorar a performace do Angular  que é também
+     * usado em varias bibliotecas como o redux. REDUX no Angular
+     */
     valueSubmit = Object.assign(valueSubmit, {
       frameworks: valueSubmit.frameworks
         .map((v, i) => (v ? this.frameworks[i] : null))
