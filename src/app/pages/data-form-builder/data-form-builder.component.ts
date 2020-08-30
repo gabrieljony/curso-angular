@@ -79,6 +79,12 @@ export class DataFormBuilderComponent
     // console.log(this.formulario);
     let valueSubmit = Object.assign({}, this.formulario.value);
 
+    /*
+    * Vamos fazer um replace=substituir, e é dessa forma que trabalhamos com
+    * imutabilidade de objetos que é uma coisa
+    * que podemos utilizar para melhorar a performace do Angular  que é também
+    * usado em varias bibliotecas como o redux. REDUX no Angular
+    */
     valueSubmit = Object.assign(valueSubmit, {
       frameworks: valueSubmit.frameworks
         .map((v, i) => (v ? this.frameworks[i] : null))
