@@ -51,7 +51,7 @@ export class DataFormBuilderComponent
       email: [null, [Validators.required, Validators.email]],
       confirmarEmail: [null, [Validators.required, Validators.email]],
       endereco: this.formBuilder.group({
-        cep: [null, Validators.required],
+        cep: [null, [Validators.required, FormValidations.cepValidator]],
         numero: [null, Validators.required],
         complemento: [null],
         rua: [null, Validators.required],
@@ -69,7 +69,10 @@ export class DataFormBuilderComponent
 
   buildFrameworks() {
     const values = this.frameworks.map((v) => new FormControl(false));
-    return this.formBuilder.array(values, FormValidations.requireMinCheckbox(1));
+    return this.formBuilder.array(
+      values,
+      FormValidations.requireMinCheckbox(1)
+    );
   }
 
   get formData() {
@@ -135,7 +138,7 @@ export class DataFormBuilderComponent
   }
 
   verificaValidCep(): boolean {
-    return (this.cepInvalido = true);
+    return this.cepInvalido === true;
   }
 
   compararCargos(obj1, obj2): boolean {

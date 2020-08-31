@@ -59,6 +59,13 @@ export abstract class BaseFormComponent {
     );
   }
 
+  verificaValidRequiredCep(campo: string) {
+    return (
+      this.formulario.get(campo).hasError('cepInvalido') &&
+      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+    );
+  }
+
   verificaValidEmailInvalido() {
     const campoEmail = this.formulario.get('email');
     if (campoEmail.errors) {

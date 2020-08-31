@@ -93,9 +93,12 @@
           >
             CEP é obrigatório.
           </div>
-          <!-- <div *ngIf="verificaValidCep('endereco.cep')" >
-          CEP é inválido.
-        </div> -->
+          <div
+            *ngIf="verificaValidRequiredCep('endereco.cep')"
+            class="error-input"
+          >
+            CEP é inválido.
+          </div>
           <div
             *ngIf="formulario.get('endereco.cep').hasError('cepInvalido')"
             class="error-input"
@@ -296,10 +299,7 @@
         id="frameworks"
         class="flex-row"
         formArrayName="frameworks"
-        *ngFor="
-          let item of formData.controls;
-          let i = index
-        "
+        *ngFor="let item of formData.controls; let i = index"
       >
         <label>
           <input type="checkbox" [formControlName]="i" />{{ frameworks[i] }}
