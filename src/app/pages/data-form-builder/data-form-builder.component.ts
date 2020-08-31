@@ -6,12 +6,15 @@ import {
   FormArray,
 } from '@angular/forms';
 
-import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
+import { map, tap } from 'rxjs/operators';
+
+import { BaseFormComponent } from './../../shared/base-form/base-form.component';
 import { ConsultarCepService } from './../../services/consultar-cep.service';
 import { ListService } from './../../services/list.service';
 import { CidadeBr } from './../../models/cidadebr.model';
 import { EstadoBr } from './../../models/estadobr.model';
 import { FormValidations } from './../../shared/validation/form-validation';
+import { VerificarEmailService } from './../../services/verificar-email.service';
 
 @Component({
   templateUrl: './data-form-builder.component.html',
@@ -34,12 +37,14 @@ export class DataFormBuilderComponent
   constructor(
     private formBuilder: FormBuilder,
     private listService: ListService,
-    private cepService: ConsultarCepService
+    private cepService: ConsultarCepService,
+    private verificarEmailService: VerificarEmailService
   ) {
     super();
   }
 
   ngOnInit(): void {
+    // this.verificarEmailService.verificarEmail('').subscribe();
     this.listService.getEstadoBr().subscribe((dados) => (this.estados = dados));
 
     this.cargos = this.listService.getCargos();
@@ -47,8 +52,12 @@ export class DataFormBuilderComponent
     this.newsletterOp = this.listService.getNewsLetter();
 
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      nome: [, Validators.required],
+      email: [
+        null,
+        [Validators.required, Validators.email],
+        [this.validarEmail.bind(this)],
+      ],
       confirmarEmail: [
         null,
         [
@@ -152,5 +161,13 @@ export class DataFormBuilderComponent
     return obj1 && obj2
       ? obj1.nome === obj2.nome && obj1.nivel === obj2.nivel
       : obj1 && obj2;
+  }
+
+  validarEmail(formControl: FormControl) {
+    return this.verificarEmailService
+      .verificarEmail(formControl.value)
+      .pipe(
+        map((emailExiste) => (emailExiste ? { emailInvalido: true } : null))
+      );
   }
 }
