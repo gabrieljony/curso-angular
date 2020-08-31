@@ -19,6 +19,9 @@ export class ErrorMsgComponent implements OnInit {
 
   ngOnInit() {}
 
+  /* Não podemos atribuir um valor.
+  *  Mas podemos obter o valor.
+  */
   get errorMessage() {
     for (const propertyName in this.control.errors) {
       if (

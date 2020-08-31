@@ -52,7 +52,14 @@ export class DataFormBuilderComponent
     this.newsletterOp = this.listService.getNewsLetter();
 
     this.formulario = this.formBuilder.group({
-      nome: [, Validators.required],
+      nome: [
+        ,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(20),
+        ],
+      ],
       email: [
         null,
         [Validators.required, Validators.email],

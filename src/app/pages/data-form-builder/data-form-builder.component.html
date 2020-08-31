@@ -10,9 +10,8 @@
           formControlName="nome"
           [ngClass]="aplicaCssErro('nome')"
         />
-        <div *ngIf="verificaValidTouched('nome')" class="error-input">
-          Nome é obrigatório.
-        </div>
+        <app-error-msg [control]="formulario.get('nome')" label="Nome">
+        </app-error-msg>
       </div>
     </div>
 
