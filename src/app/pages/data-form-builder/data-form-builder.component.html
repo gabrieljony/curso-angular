@@ -50,6 +50,7 @@
           E-mail já cadastrado.
         </div>
       </div>
+
       <div class="flex-col marginBottom-15">
         <label
           for="confirmarEmail"
@@ -64,7 +65,22 @@
           [ngClass]="aplicaCssErro('confirmarEmail')"
         />
         <div
-          *ngIf="formulario.get('confirmarEmail').hasError('equalsTo')"
+          *ngIf="formulario.get('confirmarEmail').hasError('required')"
+          class="error-input"
+        >
+          Campo e-mail é obrigatório.
+        </div>
+        <div
+          *ngIf="formulario.get('confirmarEmail').hasError('email')"
+          class="error-input"
+        >
+          Não é um email válido.
+        </div>
+        <div
+          *ngIf="
+            formulario.get('confirmarEmail').hasError('equalsTo') &&
+            !formulario.get('confirmarEmail').hasError('email')
+          "
           class="error-input"
         >
           Emails não são iguais.

@@ -11,7 +11,7 @@ export class FormValidations {
       //console.log((<FormGroup>formControl.root));
       //console.log((<FormGroup>formControl.root).get(otherField));
 
-      //formulario tem que ser renderizado
+      //formulario tem que ser renderizado na tela
       if (!formControl.root || !(<FormGroup>formControl.root).controls) {
         return null;
       }
