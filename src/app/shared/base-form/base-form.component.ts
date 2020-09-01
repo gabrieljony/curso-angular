@@ -3,14 +3,15 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-base-form',
-  templateUrl: './base-form.component.html',
-  styleUrls: ['./base-form.component.less'],
+  template: '<div></div>'
 })
 export abstract class BaseFormComponent {
   formulario: FormGroup;
 
   constructor() {}
 
+  // métodos abstratos, tem que pertencer a classes abstratas e elas tem que
+  // ser implementadas nas classes que forma extendidas
   abstract submit();
 
   onSubmit() {
