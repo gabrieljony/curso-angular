@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { delay } from 'rxjs/operators';
 import { CursoModel } from './curso.model';
 import { environment } from './../../../environments/environment';
 
@@ -13,6 +14,6 @@ export class CursosService {
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<CursoModel[]>(this.API);
+    return this.http.get<CursoModel[]>(this.API).pipe(delay(3000));
   }
 }

@@ -1,7 +1,7 @@
 <h2>HTML Table</h2>
 <button>Novo Curso</button>
 
-<table>
+<table *ngIf="cursos$ | async as cursos; else loading">
   <tr>
     <th>#</th>
     <th>Cruso</th>
@@ -17,3 +17,9 @@
     </td>
   </tr>
 </table>
+
+<ng-template #loading>
+  <div>
+    <span>Carregando Cursos...</span>
+  </div>
+</ng-template>
