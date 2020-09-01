@@ -1,6 +1,6 @@
 import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, UrlSerializer } from '@angular/router';
 
 import { DataFormComponent } from './pages/data-form/data-form.component';
 import { TemplateFormComponent } from './pages/template-form/template-form.component';
@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'url-invalida', component: DataFormComponent },
   { path: 'key-value', component: PipeKeyvalueComponent },
   { path: 'template-form', component: TemplateFormComponent },
   { path: 'data-form', component: DataFormComponent },
@@ -24,6 +25,15 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       scrollPositionRestoration: 'enabled',
+      malformedUriErrorHandler: (
+        error: URIError,
+        urlSerializer: UrlSerializer,
+        url: string
+      ) => {
+        console.log(error);
+        console.log(url);//url mal formada
+        return urlSerializer.parse('/url-invalida');
+      },
     }),
   ],
   exports: [RouterModule],
