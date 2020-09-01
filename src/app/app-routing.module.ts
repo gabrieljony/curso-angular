@@ -1,3 +1,4 @@
+import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'key-value', component: PipeKeyvalueComponent },
   { path: 'template-form', component: TemplateFormComponent },
   { path: 'data-form', component: DataFormComponent },
   { path: 'data-form-full', component: DataFormFullComponent },

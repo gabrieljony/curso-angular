@@ -14,9 +14,10 @@ import { ListService } from './services/list.service';
 import { ConsultarCepService } from './services/consultar-cep.service';
 import { VerificarEmailService } from './services/verificar-email.service';
 import { DataFormFullModule } from './pages/data-form-full/data-form-full.module';
+import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PipeKeyvalueComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
