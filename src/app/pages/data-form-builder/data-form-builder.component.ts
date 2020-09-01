@@ -92,8 +92,7 @@ export class DataFormBuilderComponent
 
     this.formulario
       .get('endereco.cep')
-      .statusChanges
-      .pipe(
+      .statusChanges.pipe(
         distinctUntilChanged(),
         // tap((status) => console.log('status do CEP:', status)),
         switchMap((status) =>
@@ -105,6 +104,29 @@ export class DataFormBuilderComponent
         )
       )
       .subscribe((dados) => (dados ? this.populaDadosForm(dados) : {}));
+
+    this.formulario
+      .get('endereco.estado')
+      .valueChanges.pipe(
+        distinctUntilChanged(),
+        tap((estado) => console.log('estado:', estado)),
+        map((estado) => this.estados.filter((e) => e.sigla === estado)),
+        map((estados) =>
+          estados && estados.length > 0 ? estados[0].id : empty()
+        ),
+        switchMap((estadoId: number) =>
+          this.listService.getCidadesBr(estadoId)
+        ),
+        tap(console.log)
+      )
+      .subscribe((cidades) => {
+        this.formulario.patchValue({
+          endereco: {
+            cidade: null,
+          },
+        });
+        this.cidades = cidades;
+      });
   }
 
   buildFrameworks() {
