@@ -6,7 +6,7 @@ import {
   FormArray,
 } from '@angular/forms';
 
-import { map, tap } from 'rxjs/operators';
+import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { BaseFormComponent } from './../../shared/base-form/base-form.component';
 import { ConsultarCepService } from './../../services/consultar-cep.service';
@@ -15,6 +15,7 @@ import { CidadeBr } from './../../models/cidadebr.model';
 import { EstadoBr } from './../../models/estadobr.model';
 import { FormValidations } from './../../shared/validation/form-validation';
 import { VerificarEmailService } from './../../services/verificar-email.service';
+import { empty } from 'rxjs';
 
 @Component({
   templateUrl: './data-form-builder.component.html',
@@ -88,6 +89,22 @@ export class DataFormBuilderComponent
       termos: [null, Validators.pattern('true')],
       frameworks: this.buildFrameworks(),
     });
+
+    this.formulario
+      .get('endereco.cep')
+      .statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        // tap((status) => console.log('status do CEP:', status)),
+        switchMap((status) =>
+          status === 'VALID'
+            ? this.cepService.consultaCEP(
+                this.formulario.get('endereco.cep').value
+              )
+            : empty()
+        )
+      )
+      .subscribe((dados) => (dados ? this.populaDadosForm(dados) : {}));
   }
 
   buildFrameworks() {

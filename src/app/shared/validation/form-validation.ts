@@ -46,7 +46,7 @@ export class FormValidations {
     if (cep && cep !== '') {
       const validacep = /^[0-9]{8}$/;
       let result = validacep.test(cep) ? null : { cepInvalido: true };
-      console.log('result', result);
+      // console.log('result', result);
       return result;
     }
     return null;
