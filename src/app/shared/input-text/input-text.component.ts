@@ -11,6 +11,7 @@ const INPUT_FIELD_VALUE_ACCESSOR: any = {
   selector: 'app-input-text',
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.less'],
+  providers:[INPUT_FIELD_VALUE_ACCESSOR]
 })
 export class InputTextComponent implements ControlValueAccessor {
   @Input() classeCssErroLabel;
@@ -37,6 +38,7 @@ export class InputTextComponent implements ControlValueAccessor {
   onChangeCb: (_: any) => void = () => {};
   onTouchedCb: (_: any) => void = () => {};
 
+  //https://angular.io/api/forms/ControlValueAccessor
   writeValue(valor: any): void {
     this.value = valor;
   }
