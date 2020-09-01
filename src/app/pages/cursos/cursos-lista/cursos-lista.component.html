@@ -1,1 +1,19 @@
-<p>cursos-lista works!</p>
+<h2>HTML Table</h2>
+<button>Novo Curso</button>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Cruso</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let curso of cursos">
+    <td>{{ curso.id }}</td>
+    <td>{{ curso.name }}</td>
+    <td>
+      <button>Atualizar</button>
+      {{ " " }}
+      <button>Renmover</button>
+    </td>
+  </tr>
+</table>

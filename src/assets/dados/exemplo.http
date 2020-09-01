@@ -15,7 +15,7 @@ POST http://localhost:3000/cursos HTTP/1.1
 content-type: application/json
 
 {
-    "name": "java"
+    "name": "typescript"
 }
 
 ###  PUT
