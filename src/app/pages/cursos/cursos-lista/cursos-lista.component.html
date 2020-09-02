@@ -1,7 +1,9 @@
 <h2>HTML Table</h2>
 <button>Novo Curso</button>
+{{ " " }}
+<button (click)="onRefresh()">Atualizar</button>
 
-<table *ngIf="cursos$ | async as cursos; else loading">
+<table *ngIf="cursos$ | async as cursos; else loadingError">
   <tr>
     <th>#</th>
     <th>Cruso</th>
@@ -13,13 +15,18 @@
     <td>
       <button>Atualizar</button>
       {{ " " }}
-      <button>Renmover</button>
+      <button>Remover</button>
     </td>
   </tr>
 </table>
 
-<ng-template #loading>
+<ng-template #loadingError>
   <div>
-    <span>Carregando Cursos...</span>
+    <div *ngIf="error$ | async; else loading">
+      Error ao carregar cursos. Tente novamente mais tarde.
+    </div>
+    <ng-template #loading>
+      <span>Carregando Cursos...</span>
+    </ng-template>
   </div>
 </ng-template>

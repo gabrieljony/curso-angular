@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, empty, Subject } from 'rxjs';
 
 import { CursoModel } from './../curso.model';
 import { CursosService } from './../cursos.service';
+import { catchError, switchMap, tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -12,6 +13,7 @@ import { CursosService } from './../cursos.service';
 export class CursosListaComponent implements OnInit {
   // cursos: CursoModel[];
   cursos$: Observable<CursoModel[]>;
+  error$ = new Subject<boolean>();
 
   constructor(private cursosService: CursosService) {}
 
@@ -20,6 +22,19 @@ export class CursosListaComponent implements OnInit {
     //   this.cursos = dados;
     // });
 
-    this.cursos$ = this.cursosService.list();
+    this.onRefresh();
+  }
+
+  onRefresh() {
+    this.cursos$ = this.cursosService.list().pipe(
+      // map((v) => console.log(v)),
+      // tap(),
+      // switchMap((valor) => console.log(valor)),
+      catchError((error) => {
+        console.error(error);
+        this.error$.next(true);
+        return empty();
+      })
+    );
   }
 }
