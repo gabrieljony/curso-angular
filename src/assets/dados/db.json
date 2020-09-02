@@ -27,6 +27,22 @@
     {
       "name": "typescript",
       "id": 7
+    },
+    {
+      "name": "dot net",
+      "id": 8
+    },
+    {
+      "name": "design",
+      "id": 9
+    },
+    {
+      "name": "sonar",
+      "id": 10
+    },
+    {
+      "name": "Microserviço",
+      "id": 11
     }
   ]
 }

@@ -20,7 +20,7 @@ export class CursosFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      nome: [
+      name: [
         ,
         [
           Validators.required,

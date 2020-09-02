@@ -1,23 +1,23 @@
 <form [formGroup]="form">
   <div>
-    <label for="nome">Nome do Curso</label>
+    <label for="name">Nome do Curso</label>
     <input
       type="text"
-      id="nome"
+      id="name"
       placeholder="Nome do Curso"
-      formControlName="nome"
+      formControlName="name"
     />
   </div>
-  <div *ngIf="hasErrorfield('nome') && hasErrorfield('nome')['required']">
+  <div *ngIf="hasErrorfield('name') && hasErrorfield('name')['required']">
     Por favor informe um nome para o curso.
   </div>
-  <div *ngIf="hasErrorfield('nome') && hasErrorfield('nome')['minlength']">
+  <div *ngIf="hasErrorfield('name') && hasErrorfield('name')['minlength']">
     Nome precisa ter no mínimo
-    {{ hasErrorfield("nome")["minlength"].requiredLength }} caracteres.
+    {{ hasErrorfield("name")["minlength"].requiredLength }} caracteres.
   </div>
-  <div *ngIf="hasErrorfield('nome') && hasErrorfield('nome')['maxlength']">
+  <div *ngIf="hasErrorfield('name') && hasErrorfield('name')['maxlength']">
     Nome precisa ter no máximo
-    {{ hasErrorfield("nome")["maxlength"].requiredLength }} caracteres.
+    {{ hasErrorfield("name")["maxlength"].requiredLength }} caracteres.
   </div>
   <div>
     <!-- [disabled]="hasError()" -->
