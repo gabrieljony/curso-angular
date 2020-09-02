@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { CursosService } from './../cursos.service';
 
 @Component({
   selector: 'app-cursos-form',
@@ -10,7 +12,11 @@ export class CursosFormComponent implements OnInit {
   form: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private cursosService: CursosService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -38,6 +44,14 @@ export class CursosFormComponent implements OnInit {
     this.submitted = true;
     if (this.form.valid) {
       console.log('submit');
+      this.cursosService.create(this.form.value).subscribe(
+        (success) => {
+          console.log('success', success);
+          this.location.back();
+        },
+        (error) => console.log('error', error),
+        () => console.log('request completado OK')
+      );
     }
   }
   onCancel() {
