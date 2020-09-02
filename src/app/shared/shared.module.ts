@@ -6,6 +6,7 @@ import { CampoControlErroComponent } from './campo-control-erro/campo-control-er
 import { ButtonComponent } from './button/button.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
     InputTextComponent,
     InputTextComponent,
     ErrorMsgComponent,
+    AlertModalComponent,
   ],
   exports: [
     DebugFormComponent,
