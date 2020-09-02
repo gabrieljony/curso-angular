@@ -30,34 +30,36 @@ export class CursosFormComponent implements OnInit {
     //   });
     // });
 
-    this.activatedRoute.params
-      .pipe(
-        map((params: any) => {
-          console.log(params['id']);
-          return params['id'];
-        }),
-        switchMap(
-          (id) => {
-            console.log(id);
-            return this.cursosService.findById(id);
-          }
-          // switchMap((curso) => this.cursosService.obterAulas(curso)),
-        )
-      )
-      .subscribe((curso) => {
-        console.log(curso);
-        this.updateForm(curso);
-      });
+    // this.activatedRoute.params
+    //   .pipe(
+    //     map((params: any) => {
+    //       console.log(params['id']);
+    //       return params['id'];
+    //     }),
+    //     switchMap(
+    //       (id) => {
+    //         console.log(id);
+    //         return this.cursosService.findById(id);
+    //       }
+    //       // switchMap((curso) => this.cursosService.obterAulas(curso)),
+    //     )
+    //   )
+    //   .subscribe((curso) => {
+    //     console.log(curso);
+    //     this.updateForm(curso);
+    //   });
 
     // Caso for fazer um create, update ou um delete
     // concatMap -> A ordem da requisição importa
     // mergeMap -> A ordem da requisição Não importa *
     // exhaustMap -> Faz a requisição para obter a resposta, caso como login
 
+    const curso = this.activatedRoute.snapshot.data['curso'];
+
     this.form = this.formBuilder.group({
-      id: [null],
+      id: [curso.id],
       name: [
-        ,
+        curso.name,
         [
           Validators.required,
           Validators.minLength(3),
@@ -67,12 +69,12 @@ export class CursosFormComponent implements OnInit {
     });
   }
 
-  updateForm(curso) {
-    this.form.patchValue({
-      id: curso.id,
-      name: curso.name,
-    });
-  }
+  // updateForm(curso) {
+  //   this.form.patchValue({
+  //     id: curso.id,
+  //     name: curso.name,
+  //   });
+  // }
 
   hasError() {
     return !this.form.valid;
