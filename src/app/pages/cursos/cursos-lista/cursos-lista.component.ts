@@ -4,6 +4,7 @@ import { Observable, empty, Subject } from 'rxjs';
 import { CursoModel } from './../curso.model';
 import { CursosService } from './../cursos.service';
 import { catchError, switchMap, tap, map } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -15,7 +16,11 @@ export class CursosListaComponent implements OnInit {
   cursos$: Observable<CursoModel[]>;
   error$ = new Subject<boolean>();
 
-  constructor(private cursosService: CursosService) {}
+  constructor(
+    private cursosService: CursosService,
+    private router: Router,
+    private routeActive: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // this.cursosService.list().subscribe((dados) => {
@@ -36,5 +41,9 @@ export class CursosListaComponent implements OnInit {
         return empty();
       })
     );
+  }
+
+  onEdit(id) {
+    this.router.navigate(['editar', id], { relativeTo: this.routeActive });
   }
 }

@@ -1,5 +1,7 @@
+import { map, switchMap, exhaustMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CursosService } from './../cursos.service';
 
@@ -15,11 +17,45 @@ export class CursosFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cursosService: CursosService,
-    private location: Location
+    private location: Location,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    // this.activatedRoute.params.subscribe((params: any) => {
+    //   const id = params['id'];
+    //   console.log(id);
+    //   const curso$ = this.cursosService.findById(id).subscribe((curso) => {
+    //     this.updateForm(curso);
+    //   });
+    // });
+
+    this.activatedRoute.params
+      .pipe(
+        map((params: any) => {
+          console.log(params['id']);
+          return params['id'];
+        }),
+        switchMap(
+          (id) => {
+            console.log(id);
+            return this.cursosService.findById(id);
+          }
+          // switchMap((curso) => this.cursosService.obterAulas(curso)),
+        )
+      )
+      .subscribe((curso) => {
+        console.log(curso);
+        this.updateForm(curso);
+      });
+
+    // Caso for fazer um create, update ou um delete
+    // concatMap -> A ordem da requisição importa
+    // mergeMap -> A ordem da requisição Não importa *
+    // exhaustMap -> Faz a requisição para obter a resposta, caso como login
+
     this.form = this.formBuilder.group({
+      id: [null],
       name: [
         ,
         [
@@ -28,6 +64,13 @@ export class CursosFormComponent implements OnInit {
           Validators.maxLength(250),
         ],
       ],
+    });
+  }
+
+  updateForm(curso) {
+    this.form.patchValue({
+      id: curso.id,
+      name: curso.name,
     });
   }
 

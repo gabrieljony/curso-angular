@@ -17,6 +17,13 @@ export class CursosService {
     return this.http.get<CursoModel[]>(this.API).pipe(delay(3000));
   }
 
+  findById(id) {
+    console.log(id)
+    return this.http
+      .get<CursoModel>(`${this.API}/${id}`)
+      .pipe(take(1));
+  }
+
   create(curso) {
     return this.http.post(this.API, curso).pipe(take(1));
   }

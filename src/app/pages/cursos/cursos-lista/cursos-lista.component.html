@@ -13,7 +13,7 @@
     <td>{{ curso.id }}</td>
     <td>{{ curso.name }}</td>
     <td>
-      <button>Atualizar</button>
+      <button (click)="onEdit(curso.id)">Atualizar</button>
       {{ " " }}
       <button>Remover</button>
     </td>
