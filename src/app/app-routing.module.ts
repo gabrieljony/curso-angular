@@ -17,6 +17,11 @@ const routes: Routes = [
   { path: 'data-form-full', component: DataFormFullComponent },
   { path: 'data-form-builder', component: DataFormBuilderComponent },
   { path: 'cursos', loadChildren: './pages/cursos/cursos.module#CursosModule' },
+  {
+    path: 'unsubscribe-rxjs',
+    loadChildren:
+      './pages/unsubscribe-rxjs/unsubscribe-rxjs.module#UnsubscribeRxjsModule',
+  },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
 ];
 
@@ -31,7 +36,7 @@ const routes: Routes = [
         url: string
       ) => {
         console.log(error);
-        console.log(url);//url mal formada
+        console.log(url); //url mal formada
         return urlSerializer.parse('/url-invalida');
       },
     }),

@@ -1,3 +1,4 @@
+import { UnsubscribeRxjsModule } from './pages/unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +30,8 @@ import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.compo
     DataFormFullModule,
     DataFormBuilderModule,
     CursosModule,
-    HomeModule
+    HomeModule,
+    UnsubscribeRxjsModule
   ],
   providers: [VerificarEmailService, ConsultarCepService, ListService],
   bootstrap: [AppComponent],
