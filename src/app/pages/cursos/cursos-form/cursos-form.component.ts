@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CursosService } from './../cursos.service';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-cursos-form',
@@ -91,14 +92,45 @@ export class CursosFormComponent implements OnInit {
     this.submitted = true;
     if (this.form.valid) {
       console.log('submit');
-      this.cursosService.create(this.form.value).subscribe(
+
+      let msgSuccess = "Curso criado com sucesso."
+      let msgError = "Erro ao criar curso, tenet novamente."
+      if (this.form.value.id) {
+        msgSuccess = "Curso atualizado com sucesso."
+        msgError = "Erro ao atualizar curso, tenet novamente."
+      }
+
+
+      this.cursosService.save(this.form.value).subscribe(
         (success) => {
-          console.log('success', success);
+          console.log('success', msgSuccess);
           this.location.back();
         },
-        (error) => console.log('error', error),
+        (error) =>
+          console.log('error', msgError),
         () => console.log('request completado OK')
       );
+      // if (this.form.value.id) {
+      //   //update
+      //   this.cursosService.update(this.form.value).subscribe(
+      //     (success) => {
+      //       console.log('success, atualizado com sucesso', success);
+      //       this.location.back();
+      //     },
+      //     (error) =>
+      //       console.log('error ao atualizar o curso, tente novamente', error),
+      //     () => console.log('request completado OK')
+      //   );
+      // } else {
+      //   this.cursosService.create(this.form.value).subscribe(
+      //     (success) => {
+      //       console.log('success', success);
+      //       this.location.back();
+      //     },
+      //     (error) => console.log('error', error),
+      //     () => console.log('request completado OK')
+      //   );
+      // }
     }
   }
   onCancel() {
