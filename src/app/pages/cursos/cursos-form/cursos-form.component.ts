@@ -1,7 +1,7 @@
 import { map, switchMap, exhaustMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CursosService } from './../cursos.service';
 
@@ -18,7 +18,8 @@ export class CursosFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private cursosService: CursosService,
     private location: Location,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +55,7 @@ export class CursosFormComponent implements OnInit {
     // mergeMap -> A ordem da requisição Não importa *
     // exhaustMap -> Faz a requisição para obter a resposta, caso como login
 
+    // curso que está sendo resolvido
     const curso = this.activatedRoute.snapshot.data['curso'];
 
     this.form = this.formBuilder.group({
@@ -102,6 +104,8 @@ export class CursosFormComponent implements OnInit {
   onCancel() {
     this.submitted = false;
     this.form.reset();
+    this.router.navigate(['/cursos']);
+    // this.location.back();
     // console.log('onCancel');
   }
 }

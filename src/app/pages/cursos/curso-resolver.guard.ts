@@ -17,10 +17,12 @@ export class CursoResolverGuard implements Resolve<CursoModel> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<CursoModel> {
+    console.log('state', state);
     if (route.params && route.params['id']) {
       return this.cursosService.findById(route.params['id']);
     }
 
+    // Criar um curso novo, retorna um observable
     return of({
       id: null,
       name: null,
