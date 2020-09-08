@@ -1,10 +1,6 @@
 {
   "cursos": [
     {
-      "name": "react",
-      "id": 3
-    },
-    {
       "name": "vuejs",
       "id": 4
     },

@@ -1,3 +1,4 @@
+import { Cursos2Service } from './cursos2.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CursosService } from './cursos.service';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,6 @@ import { CursosFormComponent } from './cursos-form/cursos-form.component';
 @NgModule({
   declarations: [CursosListaComponent, CursosFormComponent],
   imports: [CommonModule, CursosRoutingModule, ReactiveFormsModule],
-  providers: [CursosService]
+  providers: [CursosService, Cursos2Service],
 })
 export class CursosModule {}

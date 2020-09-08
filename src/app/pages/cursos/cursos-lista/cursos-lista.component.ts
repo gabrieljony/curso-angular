@@ -1,3 +1,4 @@
+import { Cursos2Service } from './../cursos2.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, empty, Subject } from 'rxjs';
 
@@ -17,7 +18,7 @@ export class CursosListaComponent implements OnInit {
   error$ = new Subject<boolean>();
 
   constructor(
-    private cursosService: CursosService,
+    private cursosService: Cursos2Service,
     private router: Router,
     private routeActive: ActivatedRoute
   ) {}
