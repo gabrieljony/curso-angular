@@ -46,4 +46,18 @@ export class CursosListaComponent implements OnInit {
   onEdit(id) {
     this.router.navigate(['editar', id], { relativeTo: this.routeActive });
   }
+
+  onDelete(curso) {
+    this.cursosService.remove(curso.id).subscribe(
+      (success) => {
+        console.log('Curso deletado com sucesso.');
+        this.onRefresh();
+      },
+      (error) => {
+        console.log('error', error);
+        console.log('Error ao deletar o curso.');
+      },
+      () => console.log('request delete completado OK')
+    );
+  }
 }
