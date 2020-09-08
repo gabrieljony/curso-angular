@@ -1,3 +1,4 @@
+import { AlertModelService } from './alert-model.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,8 +8,10 @@ import { ButtonComponent } from './button/button.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
+import { ConformModalComponent } from './conform-modal/conform-modal.component';
 
 @NgModule({
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   declarations: [
     DebugFormComponent,
     CampoControlErroComponent,
@@ -17,6 +20,7 @@ import { AlertModalComponent } from './alert-modal/alert-modal.component';
     InputTextComponent,
     ErrorMsgComponent,
     AlertModalComponent,
+    ConformModalComponent,
   ],
   exports: [
     DebugFormComponent,
@@ -25,6 +29,7 @@ import { AlertModalComponent } from './alert-modal/alert-modal.component';
     InputTextComponent,
     ErrorMsgComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  entryComponents: [ConformModalComponent],
+  providers:[AlertModelService]
 })
 export class SharedModule {}
