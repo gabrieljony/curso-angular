@@ -7,6 +7,7 @@ import { TemplateFormComponent } from './pages/template-form/template-form.compo
 import { DataFormBuilderComponent } from './pages/data-form-builder/data-form-builder.component';
 import { DataFormFullComponent } from './pages/data-form-full/data-form-full.component';
 import { HomeComponent } from './pages/home/home.component';
+import { DownloadComponent } from './pages/download/download.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'data-form', component: DataFormComponent },
   { path: 'data-form-full', component: DataFormFullComponent },
   { path: 'data-form-builder', component: DataFormBuilderComponent },
+  { path: 'download', component: DownloadComponent },
   { path: 'cursos', loadChildren: './pages/cursos/cursos.module#CursosModule' },
   {
     path: 'unsubscribe-rxjs',

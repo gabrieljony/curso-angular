@@ -16,9 +16,11 @@ import { ConsultarCepService } from './services/consultar-cep.service';
 import { VerificarEmailService } from './services/verificar-email.service';
 import { DataFormFullModule } from './pages/data-form-full/data-form-full.module';
 import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
+import { DownloadComponent } from './pages/download/download.component';
+import { FileService } from './services/file.service';
 
 @NgModule({
-  declarations: [AppComponent, PipeKeyvalueComponent],
+  declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,9 +33,14 @@ import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.compo
     DataFormBuilderModule,
     CursosModule,
     HomeModule,
-    UnsubscribeRxjsModule
+    UnsubscribeRxjsModule,
   ],
-  providers: [VerificarEmailService, ConsultarCepService, ListService],
+  providers: [
+    VerificarEmailService,
+    ConsultarCepService,
+    ListService,
+    FileService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
