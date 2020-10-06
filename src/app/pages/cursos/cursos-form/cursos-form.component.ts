@@ -58,6 +58,7 @@ export class CursosFormComponent implements OnInit {
 
     // curso que está sendo resolvido
     const curso = this.activatedRoute.snapshot.data['curso'];
+    console.log('curso', curso)
 
     this.form = this.formBuilder.group({
       id: [curso.id],

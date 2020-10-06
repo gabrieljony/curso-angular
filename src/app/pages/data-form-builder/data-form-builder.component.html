@@ -267,7 +267,7 @@
         [ngClass]="aplicaCssErro('cargo')"
         [compareWith]="compararCargos"
       >
-        <option *ngFor="let cargo of cargos" [ngValue]="cargo">
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo.id">
           {{ cargo.descricao }}
         </option>
       </select>

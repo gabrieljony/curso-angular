@@ -25,9 +25,12 @@ export class ListService {
 
   getCargos() {
     return [
-      { nome: 'Dev', nivel: 'Junior', descricao: 'Dev Jr' },
-      { nome: 'Dev', nivel: 'Pleno', descricao: 'Dev Pl' },
-      { nome: 'Dev', nivel: 'Senio', descricao: 'Dev Sr' },
+      { id: 1, descricao: 'Dev Jr' },
+      { id: 2, descricao: 'Dev Pl' },
+      { id: 3, descricao: 'Dev Sr' },
+      // { nome: 'Dev', nivel: 'Junior', descricao: 'Dev Jr' },
+      // { nome: 'Dev', nivel: 'Pleno', descricao: 'Dev Pl' },
+      // { nome: 'Dev', nivel: 'Senio', descricao: 'Dev Sr' },
     ];
   }
 

@@ -83,12 +83,13 @@ export class DataFormBuilderComponent
         estado: [null, Validators.required],
         cidade: [null, Validators.required],
       }),
-      cargo: [null],
-      tecnologia: [null],
-      newsletter: ['s'],
+      cargo: [1],
+      tecnologia: ['javascript'],
+      newsletter: ['n'],
       termos: [null, Validators.pattern('true')],
       frameworks: this.buildFrameworks(),
     });
+
 
     this.formulario
       .get('endereco.cep')
