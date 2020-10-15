@@ -18,9 +18,10 @@ import { DataFormFullModule } from './pages/data-form-full/data-form-full.module
 import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
 import { DownloadComponent } from './pages/download/download.component';
 import { FileService } from './services/file.service';
+import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript.component';
 
 @NgModule({
-  declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent],
+  declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent, AulaTypescriptComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
