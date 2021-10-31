@@ -22,6 +22,8 @@ export class CursosFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+  // ActivatedRoute é uma classe do angular, que significa rota ativa, que pode ser injetada.
+  // Para que podemos obter detalhe da rotas que está ativa no momento
 
   ngOnInit(): void {
     // this.activatedRoute.params.subscribe((params: any) => {
