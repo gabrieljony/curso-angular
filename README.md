@@ -30,6 +30,37 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 json-server --watch src/assets/dados/db.json
 
+## Introdução
+## Ambiente de Desenvolvimento
+## TypeScript
+## Módulos
+## Data binding
+## Ciclo de Vida do componente
+## Angular CLI
+## Diretivas
+## Serviços
+## Pipes(Filtros)
+## Formulários
+## Formulários Reativos (data-driven)
+## Http
+## Depuração / Debug
+
+### Debug com Augury(Extensão no Google Chrome ou Firefox)
+https://augury.rangle.io/
+
+### Debug com VS Code
+No icone de Run and DEbug realizar a configuração do VS Code para depuração
+arquivo `launch.json`
+Extensão já vem instalada no VS Code [JavaScript Debugger](https://github.com/microsoft/vscode-js-debug)
+"type": "pwa-chrome",
+Renomeia o nome do Debug
+"name": "Debug Angular", 
+Alterar a URL
+"url": "http://localhost:4200",
+
+## Build e Deploy
+
+
 
 ## Rotas
 ### Performance: Carregamento sob demanda (lazy loading)
