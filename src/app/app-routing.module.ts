@@ -20,7 +20,9 @@ const appRoutes: Routes = [
   { path: 'data-form-full', component: DataFormFullComponent },
   { path: 'data-form-builder', component: DataFormBuilderComponent },
   { path: 'download', component: DownloadComponent },
-  { path: 'cursos', loadChildren: './pages/cursos/cursos.module#CursosModule' },
+  // { path: 'cursos', loadChildren: './pages/cursos/cursos.module#CursosModule' },
+  { path: 'cursos', loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule)},
+
   {
     path: 'unsubscribe-rxjs',
     loadChildren:

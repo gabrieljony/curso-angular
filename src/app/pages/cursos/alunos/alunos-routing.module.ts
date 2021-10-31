@@ -7,7 +7,7 @@ import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 // As rotas são avaliadas de acordo como são declaradas.
 const alunosRoutes: Routes = [
   {
-    path: 'alunos',
+    path: '',
     component: AlunosComponent,
     children: [
       { path: 'novo', component: AlunoFormComponent },

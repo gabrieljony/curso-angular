@@ -11,7 +11,6 @@ import { TemplateFormModule } from './pages/template-form/template-form.module';
 import { DataFormModule } from './pages/data-form/data-form.module';
 import { DataFormBuilderModule } from './pages/data-form-builder/data-form-builder.module';
 import { HomeModule } from './pages/home/home.module';
-import { CursosModule } from './pages/cursos/cursos.module';
 import { ListService } from './services/list.service';
 import { ConsultarCepService } from './services/consultar-cep.service';
 import { VerificarEmailService } from './services/verificar-email.service';
@@ -32,7 +31,6 @@ import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript
     DataFormModule,
     DataFormFullModule,
     DataFormBuilderModule,
-    CursosModule,
     HomeModule,
     UnsubscribeRxjsModule,
     AppRoutingModule, // É uma boa prática deixar o modulo de rota no final das importações.

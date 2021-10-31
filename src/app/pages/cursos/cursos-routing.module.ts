@@ -23,6 +23,8 @@ const appRoutes: Routes = [
       curso: CursoResolverGuard,
     },
   },
+  // { path: 'alunos', loadChildren: './alunos/alunos.module#AlunosModule' },
+  { path: 'alunos', loadChildren: () => import('./alunos/alunos.module').then(m => m.AlunosModule)},
 ];
 
 @NgModule({

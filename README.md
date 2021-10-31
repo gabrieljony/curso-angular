@@ -29,3 +29,29 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## RequestsHttp
 
 json-server --watch src/assets/dados/db.json
+
+
+## Rotas
+Performance: Carregamento sob demanda (lazy loading)
+
+main.js ou main.bundle.js é o arquivo que contem todo código da nossa aplicação que desenvolveu
+nesse arquivo quando fazemos o build de produção esse arquivo main é minificado e ofuscado e diminui bastante.
+Sendo que isso tudo está sendo carregado ao mesmo tempo.
+A primeira coisa quando chamamos a rota da nossa aplicação pelo browser é que ele vai buscar o codigo no servidor para fazer o download.
+Logico que quanto maior, mais tempo demorado de carregar e fazer a renderização da aplicação.
+A ideia é ter um ganho de performace enquanto a isso. Pois o carregamento sobre demanda do que eu quero.
+Segurança = quando estou em uma tela de login não preciso saber o que tem nas outras telas.
+Passos para configuração do lazy loading:
+1. Separar em Modulos a aplicação, em modulos de funcionalidades.
+2. Declarar o Modulo apenas na chamada da rota com o caminho(path) da rota e a informação do arquivo do modulo loadChildren:
+3. Deleta qualquer outra informação onde esteja declarado o Modulo ele só pode está importado na sua classe de roteamento routing.
+{ path: 'cursos', loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule)},
+4. O caminho principal que é declarado o caminho da rota do modulo e que chama o component pricipal é declarado vazio
+{ path: '', component: CursosListaComponent },
+
+
+
+
+
+
+teste
