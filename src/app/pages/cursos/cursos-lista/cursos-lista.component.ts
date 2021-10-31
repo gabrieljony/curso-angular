@@ -1,6 +1,6 @@
 import { Cursos2Service } from './../cursos2.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable, empty, Subject } from 'rxjs';
+import { Observable, empty, Subject, Subscription } from 'rxjs';
 
 import { CursoModel } from './../curso.model';
 import { CursosService } from './../cursos.service';
@@ -17,6 +17,9 @@ export class CursosListaComponent implements OnInit {
   cursos$: Observable<CursoModel[]>;
   error$ = new Subject<boolean>();
 
+  page: number;
+  pageSubscriptin: Subscription;
+
   constructor(
     private cursosService: Cursos2Service,
     private router: Router,
@@ -28,7 +31,20 @@ export class CursosListaComponent implements OnInit {
     //   this.cursos = dados;
     // });
 
+    this.pageSubscriptin = this.routeActive.queryParams.subscribe((queryParams: any) => {
+      this.page = queryParams['page'];
+    });
+
     this.onRefresh();
+  }
+
+  ngOnDestroy() {
+    this.pageSubscriptin.unsubscribe();
+  }
+
+  nextPage() {
+    this.page++;
+    this.router.navigate(['/cursos'], {queryParams: {'page': this.page}});
   }
 
   onRefresh() {

@@ -4,9 +4,7 @@ import { CursoModel } from './curso.model';
 import { CrudService } from './../../shared/crud-service';
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class Cursos2Service extends CrudService<CursoModel> {
 
 

@@ -3,22 +3,26 @@
 {{ " " }}
 <button (click)="onRefresh()">Atualizar</button>
 
-<table *ngIf="cursos$ | async as cursos; else loadingError">
-  <tr>
-    <th>#</th>
-    <th>Cruso</th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let curso of cursos">
-    <td>{{ curso.id }}</td>
-    <td>{{ curso.name }}</td>
-    <td>
-      <button (click)="onEdit(curso.id)">Atualizar</button>
-      {{ " " }}
-      <button (click)="onDelete(curso)">Remover</button>
-    </td>
-  </tr>
-</table>
+<div *ngIf="cursos$ | async as cursos; else loadingError">
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Cruso</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let curso of cursos">
+      <td>{{ curso.id }}</td>
+      <td>{{ curso.name }}</td>
+      <td>
+        <button (click)="onEdit(curso.id)">Atualizar</button>
+        {{ " " }}
+        <button (click)="onDelete(curso)">Remover</button>
+      </td>
+    </tr>
+  </table>
+  <p>Página: {{ page }}</p>
+  <button (click)="nextPage()">Próxima página</button>
+</div>
 
 <ng-template #loadingError>
   <div>

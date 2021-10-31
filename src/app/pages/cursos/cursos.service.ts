@@ -4,9 +4,7 @@ import { delay, take } from 'rxjs/operators';
 import { CursoModel } from './curso.model';
 import { environment } from './../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CursosService {
   // readonly não posso atualizar essa variavel
   private readonly API = `${environment.API}cursos`;
