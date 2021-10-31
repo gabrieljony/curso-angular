@@ -59,7 +59,13 @@ Alterar a URL
 "url": "http://localhost:4200",
 
 ## Build e Deploy
-
+[Build versão 10 do Angular](https://v10.angular.io/cli/build)
+"build": "ng build --configuration=production",
+`npm run build`
+Execute `npm run build` para construir o projeto. Os artefatos de construção serão armazenados no diretório `dist/`. Use o sinalizador `--prod` para uma construção de produção.
+`--configuration=production`
+Um destino de compilação nomeado, conforme especificado na seção "configurations" do arquivo angular.json. Cada destino nomeado é acompanhado por uma configuração de opções padrão para esse destino. 
+*Definir isso substitui explicitamente o sinalizador `--prod`
 
 
 ## Rotas
