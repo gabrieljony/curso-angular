@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CursosGuard } from './guards/cursos.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
