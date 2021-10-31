@@ -1,0 +1,12 @@
+<section class="grid">
+  <div>
+    <p>Lista de Alunos</p>
+    <div>
+      <!-- Passa apenas o id do aluno na rota, não passa o objeto completo aluno, o Angular não permite que passamos objeto na rota -->
+      <a *ngFor="let aluno of alunos" [routerLink]="[aluno.id]">{{ aluno.name }}<br></a>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</section>

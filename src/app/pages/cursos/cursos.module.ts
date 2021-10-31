@@ -1,3 +1,4 @@
+import { AlunosModule } from './alunos/alunos.module';
 import { Cursos2Service } from './cursos2.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CursosService } from './cursos.service';
@@ -13,6 +14,7 @@ import { CursosFormComponent } from './cursos-form/cursos-form.component';
   imports: [
     CommonModule, // O CommonModulo faz parte do modulo de funcionalidade, ele possui as diretivas que usamos mais no angular
     ReactiveFormsModule,
+    AlunosModule,
     CursosRoutingModule
   ],
   providers: [CursosService, Cursos2Service],
