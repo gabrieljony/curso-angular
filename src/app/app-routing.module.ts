@@ -9,6 +9,8 @@ import { DataFormFullComponent } from './pages/data-form-full/data-form-full.com
 import { HomeComponent } from './pages/home/home.component';
 import { DownloadComponent } from './pages/download/download.component';
 
+// path = é o caminho
+// component = é o component a ser renderizado por aquele caminho path
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'url-invalida', component: DataFormComponent },

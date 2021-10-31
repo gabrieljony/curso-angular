@@ -1,3 +1,4 @@
+import { LoginComponent } from './pages/login/login.component';
 import { UnsubscribeRxjsModule } from './pages/unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,7 @@ import { FileService } from './services/file.service';
 import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript.component';
 
 @NgModule({
-  declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent, AulaTypescriptComponent],
+  declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent, AulaTypescriptComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
