@@ -57,7 +57,3 @@ Quando trabalhamos com a conexão com o servidor backend, pode ser que a linguag
     RouterModule.forRoot(appRoutes, {
       useHash: true,
       ...
-
-
-
-teste

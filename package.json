@@ -1,6 +1,12 @@
 {
   "name": "curso-angular",
   "version": "0.0.0",
+  "description": "Aplicação Web em Angular - Baseado no Curso Loiane Groner",
+  "author": {
+    "email": "gabriel_jony@hotmail.com",
+    "name": "Gabriel Jony Borges Silva",
+    "url": ""
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
