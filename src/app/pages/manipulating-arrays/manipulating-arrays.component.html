@@ -1,0 +1,70 @@
+<h1>Manipulating Arrays</h1>
+
+<h3>O que são Arrays?</h3>
+<p>No JavaScript, Array faz parte dos objetos globais sa linguagem e é utilizado para armazenar uma coleção de elementos em uma única variável. E os arrays nos fornecem vários métodos para facilitar a sua manipulação. Os arrays também são conhecido como listas.</p>
+
+<p>Array: [1, 2, 3, 4, 5, 6, 7]</p>
+<br>
+<ul>
+  <li>
+    <p>.map</p>
+    <p>O array.map(), após chamar uma função específica em cada item do array principal, vai criar um novo array com a alterações.</p>
+    <button (click)="onMap()">Map</button>
+    <p>Antes: {{ arrayExample }}</p>
+    <p>Novo: {{ arrayExampleNew }}</p>
+  </li>
+  <li>
+    <p>.filter</p>
+    <p>Com o método array.filter(), criamos um novo array com todos os elementos que passaram no teste implementado pela função callback.</p>
+    <button (click)="onFilter()">Filter</button>
+    <p>Antes: [1,1,1,3,4,1]</p>
+    <p>Novo: {{ arrayExampleNew }}</p>
+  </li>
+  <li>
+    <p>.find</p>
+    <p>Quando queremos encontrar o elemento, sendo que ele retorna o primeiro elemento encontrado. Caso não encontre ele retorna undefined.</p>
+    <button (click)="onFind()">Find</button>
+    <p>Novo: {{ arrayExampleFind }}</p>
+  </li>
+  <li>
+    <p>.findIndex</p>
+    <p>O método array.findIndex() retorna o índice do primeiro elemento do array que satisfaz a função de teste fornecida.
+      Caso contrário ou caso não encontre o elemento, retorna -1, indicando que nenhum elemento passou no teste.</p>
+    <button (click)="onFindIndex()">FindIndex</button>
+    <p>Retorna a posição do elemento: {{ arrayExampleFind > -1 ? 'O elemento está na posição: ' + arrayExampleFind : 'O elemento não foi encontrado: ' + arrayExampleFind }}</p>
+  </li>
+  <li>
+    <p>.fill</p>
+    <p>O método array.fill() altera todos os elementos em uma matriz para um valor estático, de um índice inicial (padrão 0) para um índice final (padrão array.length). Ele retorna a matriz modificada.</p>
+    <button (click)="onFill()">Fill</button>
+    <p>Novo: {{ arrayExampleFind }}</p>
+  </li>
+  <li>
+    <p>.some</p>
+    <p>O método array.some() testa se pelo menos um(1) elemento do array passa no teste implementado pela função fornecida.
+      Ele retorna verdadeiro(true) se, o array, encontrar um elemento para o qual a função fornecida retorna verdadeiro(true);
+      Caso contrário, retorna falso(false). Esse método NÃO modifica o array.</p>
+    <button (click)="onSome()">Some</button>
+    <p>Verdadeiro ou Falso: {{ arrayExampleFind }}</p>
+  </li>
+  <li>
+    <p>.every</p>
+    <p>O método array.every() testa se todos os elementos da matriz passam no teste implementado pela função fornecida.
+      Ele retorna um valor booleano. CAso passe por todos testes retorna true, caso contrario retorna false.</p>
+    <button (click)="onEvery()">Every</button>
+  </li>
+  <li>
+    <p>.push</p>
+    <p>Utilizamos o array.push() para adicionar um elemento ao FINAL do array.</p>
+    <button (click)="onPush()">Push</button>
+  </li>
+  <li>
+    <p>.includes</p>
+    <p>Utilizamos o método array.includes(), onde nos retorna se um array contém um determinado elemento ou não. O seu retorno é boolean true ou false.</p>
+    <button (click)="onIncludes()">Includes</button>
+  </li>
+  <li>
+    <p>.slice</p>
+    <button (click)="onSlice()">Slice</button>
+  </li>
+</ul>
