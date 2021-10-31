@@ -1,3 +1,4 @@
+import { LoginComponent } from './pages/login/login.component';
 import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, UrlSerializer } from '@angular/router';
@@ -12,6 +13,7 @@ import { DownloadComponent } from './pages/download/download.component';
 // path = é o caminho
 // component = é o component a ser renderizado por aquele caminho path
 const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'url-invalida', component: DataFormComponent },
   { path: 'key-value', component: PipeKeyvalueComponent },
@@ -28,7 +30,7 @@ const appRoutes: Routes = [
     loadChildren:
       './pages/unsubscribe-rxjs/unsubscribe-rxjs.module#UnsubscribeRxjsModule',
   },
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
 ];
 
 @NgModule({

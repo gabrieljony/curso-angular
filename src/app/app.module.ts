@@ -1,3 +1,4 @@
+import { AuthService } from './pages/login/auth.service';
 import { LoginComponent } from './pages/login/login.component';
 import { UnsubscribeRxjsModule } from './pages/unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,6 +37,7 @@ import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript
     AppRoutingModule, // É uma boa prática deixar o modulo de rota no final das importações.
   ],
   providers: [
+    AuthService,
     VerificarEmailService,
     ConsultarCepService,
     ListService,

@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { AuthService } from './../../pages/login/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
+  mostrarMenu: boolean = false;
+  menuSubscription: Subscription;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.menuSubscription = this.authService.mostrarMenuEmitter.subscribe((mostrar) => {
+      this.mostrarMenu = mostrar
+    })
+  }
+
+  ngOnDestroy() {
+    this.menuSubscription.unsubscribe();
   }
 
 }

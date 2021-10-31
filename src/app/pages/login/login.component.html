@@ -1,3 +1,12 @@
-<p>
-  login works!
-</p>
+<div class="login-box">
+  <h1>Login</h1>
+  <div class="textbox">
+    <input [(ngModel)]="usuario.login" type="text" placeholder="Login">
+  </div>
+
+  <div class="textbox">
+    <input [(ngModel)]="usuario.password" type="password" placeholder="Password">
+  </div>
+
+  <input type="button" class="btn" value="Sign in" (click)="onLogin()" >
+</div>
