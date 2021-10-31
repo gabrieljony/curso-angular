@@ -32,7 +32,7 @@ json-server --watch src/assets/dados/db.json
 
 
 ## Rotas
-Performance: Carregamento sob demanda (lazy loading)
+### Performance: Carregamento sob demanda (lazy loading)
 
 main.js ou main.bundle.js é o arquivo que contem todo código da nossa aplicação que desenvolveu
 nesse arquivo quando fazemos o build de produção esse arquivo main é minificado e ofuscado e diminui bastante.
@@ -49,8 +49,14 @@ Passos para configuração do lazy loading:
 4. O caminho principal que é declarado o caminho da rota do modulo e que chama o component pricipal é declarado vazio
 { path: '', component: CursosListaComponent },
 
-
-
+### Estilo de url: HTML5 ou usando #(hash)
+Não utilizar o hash é o padrão de roteamento do html5.
+Quando trabalhamos com a conexão com o servidor backend, pode ser que a linguagem que for trabalhar no backend, não aceite esse padrão que é sugerido pelo HTML5 e o container não vai reconhecer o link e também não vai saber quando vc está tentando acessar um roteamento ou quando vc está tentando acessar uma url pra poder fazer uma chamada ajax, por esse motivo, o Angular tambem oferece a opção de utilizar a hash # no projeto, é incluir useHash: true. Para configurar:
+@NgModule({
+  imports: [
+    RouterModule.forRoot(appRoutes, {
+      useHash: true,
+      ...
 
 
 
