@@ -16,7 +16,7 @@ import { DownloadComponent } from './pages/download/download.component';
 // component = é o component a ser renderizado por aquele caminho path
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], canLoad: [AuthGuard] },
   { path: 'url-invalida', component: DataFormComponent, canActivate: [AuthGuard] },
   { path: 'key-value', component: PipeKeyvalueComponent, canActivate: [AuthGuard] },
   { path: 'template-form', component: TemplateFormComponent, canActivate: [AuthGuard] },
@@ -29,7 +29,8 @@ const appRoutes: Routes = [
     path: 'cursos',
     loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule),
     canActivate: [AuthGuard],
-    canActivateChild: [CursosGuard]
+    canActivateChild: [CursosGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: 'unsubscribe-rxjs',
