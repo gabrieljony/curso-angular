@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
 import { NgModule } from '@angular/core';
@@ -14,21 +15,22 @@ import { DownloadComponent } from './pages/download/download.component';
 // component = é o component a ser renderizado por aquele caminho path
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'url-invalida', component: DataFormComponent },
-  { path: 'key-value', component: PipeKeyvalueComponent },
-  { path: 'template-form', component: TemplateFormComponent },
-  { path: 'data-form', component: DataFormComponent },
-  { path: 'data-form-full', component: DataFormFullComponent },
-  { path: 'data-form-builder', component: DataFormBuilderComponent },
-  { path: 'download', component: DownloadComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'url-invalida', component: DataFormComponent, canActivate: [AuthGuard] },
+  { path: 'key-value', component: PipeKeyvalueComponent, canActivate: [AuthGuard] },
+  { path: 'template-form', component: TemplateFormComponent, canActivate: [AuthGuard] },
+  { path: 'data-form', component: DataFormComponent, canActivate: [AuthGuard] },
+  { path: 'data-form-full', component: DataFormFullComponent, canActivate: [AuthGuard] },
+  { path: 'data-form-builder', component: DataFormBuilderComponent, canActivate: [AuthGuard] },
+  { path: 'download', component: DownloadComponent, canActivate: [AuthGuard] },
   // { path: 'cursos', loadChildren: './pages/cursos/cursos.module#CursosModule' },
-  { path: 'cursos', loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule)},
+  { path: 'cursos', loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule), canActivate: [AuthGuard]},
 
   {
     path: 'unsubscribe-rxjs',
     loadChildren:
       './pages/unsubscribe-rxjs/unsubscribe-rxjs.module#UnsubscribeRxjsModule',
+    canActivate: [AuthGuard]
   },
   { path: '', pathMatch: 'full', redirectTo: 'login' },
 ];

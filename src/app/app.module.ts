@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './pages/login/auth.service';
 import { LoginComponent } from './pages/login/login.component';
 import { UnsubscribeRxjsModule } from './pages/unsubscribe-rxjs/unsubscribe-rxjs.module';
@@ -37,6 +38,7 @@ import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript
     AppRoutingModule, // É uma boa prática deixar o modulo de rota no final das importações.
   ],
   providers: [
+    AuthGuard,
     AuthService,
     VerificarEmailService,
     ConsultarCepService,
