@@ -11,7 +11,7 @@ import { DownloadComponent } from './pages/download/download.component';
 
 // path = é o caminho
 // component = é o component a ser renderizado por aquele caminho path
-const routes: Routes = [
+const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'url-invalida', component: DataFormComponent },
   { path: 'key-value', component: PipeKeyvalueComponent },
@@ -31,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
+    RouterModule.forRoot(appRoutes, {
       useHash: true,
       scrollPositionRestoration: 'enabled',
       malformedUriErrorHandler: (
@@ -45,6 +45,6 @@ const routes: Routes = [
       },
     }),
   ],
-  exports: [RouterModule],
+  exports: [RouterModule], // O RouterModule possui as diretivas de rota routerLink
 })
 export class AppRoutingModule {}

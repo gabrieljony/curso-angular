@@ -10,7 +10,11 @@ import { CursosFormComponent } from './cursos-form/cursos-form.component';
 
 @NgModule({
   declarations: [CursosListaComponent, CursosFormComponent],
-  imports: [CommonModule, CursosRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule, // O CommonModulo faz parte do modulo de funcionalidade, ele possui as diretivas que usamos mais no angular
+    ReactiveFormsModule,
+    CursosRoutingModule
+  ],
   providers: [CursosService, Cursos2Service],
 })
 export class CursosModule {}

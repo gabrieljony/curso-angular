@@ -24,8 +24,7 @@ import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript
 @NgModule({
   declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent, AulaTypescriptComponent, LoginComponent],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule, // O BrowserModule é usado no modulo principal(raiz), não pode ser usado no modulo de funcionalidade.
     FormsModule,
     ReactiveFormsModule,
     TemplateModule,
@@ -36,6 +35,7 @@ import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript
     CursosModule,
     HomeModule,
     UnsubscribeRxjsModule,
+    AppRoutingModule, // É uma boa prática deixar o modulo de rota no final das importações.
   ],
   providers: [
     VerificarEmailService,
