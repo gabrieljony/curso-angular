@@ -1,3 +1,4 @@
+import { CursosGuard } from './guards/cursos.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { PipeKeyvalueComponent } from './pages/pipe-keyvalue/pipe-keyvalue.component';
@@ -24,8 +25,12 @@ const appRoutes: Routes = [
   { path: 'data-form-builder', component: DataFormBuilderComponent, canActivate: [AuthGuard] },
   { path: 'download', component: DownloadComponent, canActivate: [AuthGuard] },
   // { path: 'cursos', loadChildren: './pages/cursos/cursos.module#CursosModule' },
-  { path: 'cursos', loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule), canActivate: [AuthGuard]},
-
+  {
+    path: 'cursos',
+    loadChildren: () => import('./pages/cursos/cursos.module').then(m => m.CursosModule),
+    canActivate: [AuthGuard],
+    canActivateChild: [CursosGuard]
+  },
   {
     path: 'unsubscribe-rxjs',
     loadChildren:

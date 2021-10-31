@@ -1,3 +1,4 @@
+import { AlunosGuard } from './../../../guards/alunos.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AlunosComponent } from './alunos.component';
@@ -9,6 +10,7 @@ const alunosRoutes: Routes = [
   {
     path: '',
     component: AlunosComponent,
+    canActivateChild: [AlunosGuard],
     children: [
       { path: 'novo', component: AlunoFormComponent },
       { path: ':id', component: AlunoDetalheComponent },

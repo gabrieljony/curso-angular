@@ -1,3 +1,4 @@
+import { CursosGuard } from './guards/cursos.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './pages/login/auth.service';
 import { LoginComponent } from './pages/login/login.component';
@@ -39,6 +40,7 @@ import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript
   ],
   providers: [
     AuthGuard,
+    CursosGuard,
     AuthService,
     VerificarEmailService,
     ConsultarCepService,
