@@ -1,10 +1,5 @@
+import { AlunoProps } from './alunos';
 import { Injectable } from '@angular/core';
-
-interface AlunoProps {
-  id: number;
-  name: string;
-  email: string;
-}
 
 @Injectable()
 export class AlunosService {
