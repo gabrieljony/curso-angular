@@ -1,3 +1,13 @@
-<p>
-  aluno-form works!
-</p>
+<h5>
+  Editar Aluno
+</h5>
+
+<label for="">Id:</label>
+<input type="text" [(ngModel)]="aluno.id" disabled />
+<label for="">Nome:</label>
+<input type="text" [(ngModel)]="aluno.name" (input)="onInput()"/>
+<label for="">E-mail:</label>
+<input type="text" [(ngModel)]="aluno.email">
+<br>
+<br>
+<button (click)="onSave()">Salvar</button>

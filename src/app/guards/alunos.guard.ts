@@ -14,8 +14,8 @@ export class AlunosGuard implements CanActivateChild {
 
     // Verifica se a rota é editar ele não tem permissão.
     if(state.url.includes('editar')){
-      alert('Usuário sem acesso.');
-      return false;
+      // alert('Usuário sem acesso.');
+      // return false;
     }
 
     if(this.authService.usuarioEstaAutenticado()){
