@@ -46,7 +46,7 @@ json-server --watch src/assets/dados/db.json
 ## Depuração / Debug
 
 ### Debug com Augury(Extensão no Google Chrome ou Firefox)
-https://augury.rangle.io/
+[Angular Augury](https://augury.rangle.io/)
 
 ### Debug com VS Code
 No icone de Run and DEbug realizar a configuração do VS Code para depuração
