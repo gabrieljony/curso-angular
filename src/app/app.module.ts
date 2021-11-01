@@ -25,7 +25,14 @@ import { FileService } from './services/file.service';
 import { AulaTypescriptComponent } from './pages/aula-typescript/aula-typescript.component';
 
 @NgModule({
-  declarations: [AppComponent, PipeKeyvalueComponent, DownloadComponent, AulaTypescriptComponent, LoginComponent, NotFoundComponent],
+  declarations: [
+    AppComponent,
+    PipeKeyvalueComponent,
+    DownloadComponent,
+    AulaTypescriptComponent,
+    LoginComponent,
+    NotFoundComponent
+  ],
   imports: [
     BrowserModule, // O BrowserModule é usado no modulo principal(raiz), não pode ser usado no modulo de funcionalidade.
     FormsModule,

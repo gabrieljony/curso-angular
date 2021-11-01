@@ -9,4 +9,8 @@
     json-server --watch src/assets/dados/db.json
   </code>
 </div>
-<app-manipulating-arrays></app-manipulating-arrays>
+<!-- <app-manipulating-arrays></app-manipulating-arrays> -->
+<app-lifecycle-hooks *ngIf="mostrar" [valorInicial]="valorI"></app-lifecycle-hooks>
+<br>
+<button (click)="mudarValor()">Aumentar valor</button>
+<button (click)="deletar()">Deletar</button>

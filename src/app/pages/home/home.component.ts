@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  valorI: number = 20;
+  mostrar: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  mudarValor(){
+    this.valorI++;
+  }
+
+  deletar(){
+    this.mostrar = false;
   }
 
 }
