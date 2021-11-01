@@ -50,7 +50,8 @@ export class LifecycleHooksComponent implements OnInit, OnChanges, DoCheck, Afte
     console.log('ngAfterContentChecked');
   }
   ngAfterViewInit() {
-
+    // Responder após o Angular inicializar as visualizações do componente
+    // e as visualizações filhas ou a visualização que contém a diretiva
     console.log('ngAfterViewInit');
   }
   ngAfterViewChecked() {

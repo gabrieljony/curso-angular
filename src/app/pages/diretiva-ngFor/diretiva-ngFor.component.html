@@ -1,9 +1,25 @@
 <h1>
   Diretiva *ngFor
 </h1>
-
+<p>O *ngFor é uma diretiva de repetidor - uma forma de apresentar uma lista de itens.</p>
+<p>Define um bloco de HTML como um único item deve ser exibido e, em seguida, diz ao Angular para usar esse bloco como um modelo para renderizar cada item na lista.</p>
+<p>No exemplo abaixo foi definido o bloco da tag li, logo será repetido esse bloco</p>
+<p>https://v10.angular.io/api/common/NgForOf</p>
+<p>NgFor é implementado pela diretiva NgForOf.</p>
+<p>Local variables</p>
 <ul>
-  <li *ngFor="let curso of cursos, let i = index">
+  <li>
+    index: number: The index of the current item in the iterable.
+  </li>
+  <li>count: number: o comprimento do iterável.</li>
+  <li>first: boolean: Verdadeiro quando o item é o primeiro item no iterável.</li>
+  <li>last: boolean: Verdadeiro quando o item é o último item no iterável.</li>
+  <li>even: boolean: Verdadeiro quando o item tem um índice uniforme no iterável.</li>
+  <li>odd: boolean:Verdadeiro quando o item tem um índice ímpar no iterável.</li>
+</ul>
+<ul>
+  <li *ngFor="let curso of cursos; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd">
+    <input #cursoItem type="checkbox" [name]="curso" [id]="'curso'+i" [disabled]="isDisabled(i, isFirst, isLast, isEven, isOdd)" [checked]="isChecked(i)">
     {{ i }} - {{ curso }}
   </li>
 </ul>
