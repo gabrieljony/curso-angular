@@ -133,6 +133,9 @@ Quando trabalhamos com a conexão com o servidor backend, pode ser que a linguag
       useHash: true,
       ...
 
+## Configuring CommonJS dependencies
+Caso na sua aplicação esteja tendo muitos Warnings de biblioteca de terceiros o que pode ser feito é a configuração [nesse linnk.](https://angular.io/guide/build#configuring-commonjs-dependencies)
+
 
 ## Próximos passos
 
