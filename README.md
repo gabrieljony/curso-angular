@@ -93,7 +93,11 @@ Instale a dependencia abaixo:
 Depois faz o `ng deploy` que vai gerar o build novo das alterações e o deploy em produção.
 `ng deploy`
 
+### Gerando Imagem Docker com Build de Produção
 
+[nginx](https://www.nginx.com/)
+
+Arquivo de configuração do docker para projeto angular [clique aqui](https://github.com/DanWahlin/Angular-Core-Concepts/blob/master/config/nginx.conf)
 
 
 ## Rotas
