@@ -99,6 +99,12 @@ Depois faz o `ng deploy` que vai gerar o build novo das alterações e o deploy 
 
 Arquivo de configuração do docker para projeto angular [clique aqui](https://github.com/DanWahlin/Angular-Core-Concepts/blob/master/config/nginx.conf)
 
+### Imagem Docker: Deploy Google Cloud (Cloud Run)
+
+[tutorial](https://cloud.google.com/run/docs/quickstarts)
+
+### Imagem Docker: Deploy Microsoft Azure
+### Imagem Docker: Deploy Amazon AWS
 
 ## Rotas
 ### Performance: Carregamento sob demanda (lazy loading)
@@ -126,3 +132,16 @@ Quando trabalhamos com a conexão com o servidor backend, pode ser que a linguag
     RouterModule.forRoot(appRoutes, {
       useHash: true,
       ...
+
+
+## Próximos passos
+
+### Testes
+### Gernciamento de estado(ngRX)
+### Organização de aplicação grande
+### Segurança
+
+## Documentação importantes
+[Angular io](https://angular.io/)
+[Update Angular io](https://update.angular.io/)
+
