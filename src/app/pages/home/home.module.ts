@@ -1,3 +1,4 @@
+import { NovidadesTypescriptComponent } from './../novidades-typescript/novidades-typescript.component';
 import { DiretivaNgForComponent } from './../diretiva-ngFor/diretiva-ngFor.component';
 import { ViewChildComponent } from './../view-child/view-child.component';
 import { LifecycleHooksComponent } from './../lifecycle-hooks/lifecycle-hooks.component';
@@ -14,7 +15,8 @@ import { HomeComponent } from './home.component';
     ManipulatingArraysComponent,
     LifecycleHooksComponent,
     ViewChildComponent,
-    DiretivaNgForComponent
+    DiretivaNgForComponent,
+    NovidadesTypescriptComponent
   ],
   imports: [
     CommonModule
