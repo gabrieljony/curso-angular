@@ -66,6 +66,23 @@ Execute `npm run build` para construir o projeto. Os artefatos de construção s
 `--configuration=production`
 Um destino de compilação nomeado, conforme especificado na seção "configurations" do arquivo angular.json. Cada destino nomeado é acompanhado por uma configuração de opções padrão para esse destino. 
 *Definir isso substitui explicitamente o sinalizador `--prod`
+### Deploy em Produção (Firebase Hosting)
+instale o firebase globalmente `npm install -g firebase-tools` para verificar a documentação [clique aqui](https://firebase.google.com/docs/cli?hl=en&authuser=0#mac-linux-npm)
+Após a instalação realize o login através do comando `firebase login` no prompt de comando. Vai permitir acesso através de uma conta da google e dar as permissões, ao final será apresentado uma mensagem Firebase CLI Login Successful.
+
+Ao concluir com sucesso, volta na tela do firebase e Criar um novo projeto. Nesse caso coloquei o nome do projeto curso-angular-gabriel, lembrando que tem que ser único.
+
+Verifique as condições gratuitas para o plano do firebase [clique aqui](https://firebase.google.com/pricing?authuser=0) para saber mais do plano free.
+
+Para iniciar as configurações do projeto `firebase init`
+
+Realizar as configurações do Firebase Hosting
+
+Implantar no Firebase Hosting `firebase deploy`
+
+Link do site em produção [acesse aqui](https://curso-angular-gabriel-31958.web.app)
+
+
 
 
 ## Rotas
