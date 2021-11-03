@@ -83,6 +83,17 @@ Implantar no Firebase Hosting `firebase deploy`
 Link do site em produção [acesse aqui](https://curso-angular-gabriel-31958.web.app)
 
 
+### Deploy em Produção com ng deploy (Firebase)
+
+Link da documentação [clique aqui](https://angular.io/guide/deployment)
+
+Instale a dependencia abaixo:
+`ng add @angular/fire`
+
+Depois faz o `ng deploy` que vai gerar o build novo das alterações e o deploy em produção.
+`ng deploy`
+
+
 
 
 ## Rotas

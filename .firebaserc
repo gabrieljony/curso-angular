@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "curso-angular-gabriel-31958"
+  },
+  "targets": {
+    "angular-fireauth-64a64": {
+      "hosting": {
+        "curso-angular": [
+          "angular-fireauth-64a64"
+        ]
+      }
+    }
   }
 }
